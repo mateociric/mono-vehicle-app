@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import 'component/Header/Navbar/Navbar.scss';
+import 'component/Navbar/Navbar.scss';
 import THref from "model/model-navbar-href";
 
 function Navbar(props: {href: THref}) {

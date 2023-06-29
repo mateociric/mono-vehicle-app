@@ -1,0 +1,27 @@
+@import 'style/variable.scss';
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.75fr;
+    grid-template-rows: 0.25fr 1.25fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "header header aside"
+        "main main aside";
+}
+
+.header {
+    grid-area: header;
+    width: 100%;
+    background-color: $col-header;
+}
+
+.main {
+    grid-area: main;
+}
+
+.aside {
+    grid-area: aside;
+    background-color: $col-aside;
+    //continue with aside
+}
