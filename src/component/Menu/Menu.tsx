@@ -4,7 +4,6 @@ function Menu() {
     return (
         <>
             <div className='menu'>
-
                 <section className='menu__title'>
                     <p>MENU</p>
                 </section>

@@ -1,0 +1,38 @@
+input,
+select,
+button {
+    border: none;
+    font-family: $font-main;
+    font-size: $font-size-input-selct-button;
+    line-height: 5rem;
+    align-self: center;
+    transition: box-shadow .25s;
+
+    &:hover {
+        box-shadow: 0 0 .5rem .1rem $col-header, 0 0 1.5rem .25rem $col-header;
+    }
+}
+
+input,
+select {
+    border-radius: 3rem;
+    padding-left: 1rem;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+select {
+    height: 5rem;
+}
+
+button {
+    border-radius: .5rem;
+    transition: box-shadow .25s;
+
+    &:active {
+        transform: scale(.925);
+        box-shadow: unset;
+    }
+}

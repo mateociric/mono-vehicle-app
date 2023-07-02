@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 import Navbar from 'component/Navbar/Navbar';
 import Homepage from 'page/Homepage/Homepage';
-import Favorite from 'page/Favorite/Favorite';
+import Update from 'page/Update/Update';
 import Help from 'page/Help/Help';
 import THref from 'model/model-navbar-href';
 import Menu from 'component/Menu/Menu';
@@ -13,9 +13,9 @@ const href: THref = {
     path: '/',
     linkName: 'HOMEPAGE',
   },
-  favorite: {
-    path: '/Favorite',
-    linkName: 'FAVORITE',
+  update: {
+    path: '/Update',
+    linkName: 'UPDATE',
   },
   help: {
     path: '/Help',
@@ -33,7 +33,7 @@ function App() {
       <main className='main'>
         <Routes>
           <Route path='/*' element={<Homepage />}></Route>
-          <Route path='/Favorite' element={<Favorite />}></Route>
+          <Route path='/Update' element={<Update />}></Route>
           <Route path='/Help' element={<Help />}></Route>
         </Routes>
       </main>

@@ -3,7 +3,7 @@ type THref = {
         path: string,
         linkName: string,
     },
-    favorite: {
+    update: {
         path: string,
         linkName: string,
     },
