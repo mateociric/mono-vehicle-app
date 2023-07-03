@@ -36,3 +36,9 @@ button {
         box-shadow: unset;
     }
 }
+
+label {
+    margin-bottom: 1rem;
+    font-size: $font-size-label;
+    color: $col-label;
+}

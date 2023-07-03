@@ -2,15 +2,25 @@
 
 .update {
     width: 100%;
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    font-family: $font-main;
     text-align: center;
 
-    & button {
-        width: 12.5%;
+    & input {
+        width: 30rem;
     }
-}
 
-p {
-    font-family: $font-main;
-    font-size: 3rem;
-    color: $col-header;
+    & button {
+        width: 15%;
+
+        &:first-of-type {
+            margin-top: 5rem;
+        }
+
+        &:last-of-type {
+            margin-top: 1.5rem;
+        }
+    }
 }
