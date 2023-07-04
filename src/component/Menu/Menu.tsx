@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import 'component/Menu/Menu.scss'
 import SelectCarBrand from 'component/Menu/SelectCarBrand/SelectCarBrand';
+import SelectCarModel from 'component/Menu/SelectCarModel/SelectCarModel';
 import ctxStoreValues from 'store/store-context';
 
 function Menu() {
-
     const ctxStoreVal = useContext(ctxStoreValues);
 
     return (
@@ -31,14 +31,7 @@ function Menu() {
                 <section className='menu__add'>
                     <label>add vehicle</label>
                     <SelectCarBrand updatedOptionList={ctxStoreVal.values.carBrand} />
-                    <select name="" id="">
-                        <option value="Porsche">Taycan</option>
-                        <option value="Porsche">Panamera</option>
-                        <option value="Mercedes-Benz">S-Class</option>
-                        <option value="Mercedes-Benz">EQS</option>
-                        <option value="BMW">7 Series</option>
-                        <option value="BMW">8 Series</option>
-                    </select>
+                    <SelectCarModel updatedOptionList={ctxStoreVal.values.carModel[0]} />
                     <button>add vehicle</button>
                 </section>
             </div>
