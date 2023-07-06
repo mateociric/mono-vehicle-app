@@ -3,7 +3,7 @@ function SelectCarModel(props: { updatedOptionList: string[] }) {
     return (
         <select>
             {props.updatedOptionList.map((el, index) => {
-                return <option key={index}>{el}</option>
+                return <option value={index} key={index}>{el}</option>
             })}
         </select>
     )

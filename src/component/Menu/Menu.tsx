@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import 'component/Menu/Menu.scss'
 import SelectCarBrand from 'component/Menu/SelectCarBrand/SelectCarBrand';
 import SelectCarModel from 'component/Menu/SelectCarModel/SelectCarModel';
@@ -30,8 +30,8 @@ function Menu() {
 
                 <section className='menu__add'>
                     <label>add vehicle</label>
-                    <SelectCarBrand updatedOptionList={ctxStoreVal.values.carBrand} />
-                    <SelectCarModel updatedOptionList={ctxStoreVal.values.carModel[0]} />
+                    <SelectCarBrand value={ctxStoreVal.values.selectedCarBrand} updatedOptionList={ctxStoreVal.values.carBrand} setSelectedCarBrand={ctxStoreVal.func.setSelectedCarBrand} />
+                    <SelectCarModel updatedOptionList={ctxStoreVal.values.carModel[ctxStoreVal.values.selectedCarBrand]} />
                     <button>add vehicle</button>
                 </section>
             </div>

@@ -1,11 +1,7 @@
-import React, {useState} from 'react';
-
-
-function SelectCarBrand(props: { updatedOptionList: string[] }) {
-    const [selectedCarBrand, setSelectedCarBrand] = useState<number>(0)
+function SelectCarBrand(props: { value: number, updatedOptionList: string[], setSelectedCarBrand: Function }) {
 
     return (
-        <select value={selectedCarBrand} onChange={(event: any) => setSelectedCarBrand(event.target.value)}>
+        <select value={props.value} onChange={(event: any) => {props.setSelectedCarBrand(event.target.value)}}>
             {props.updatedOptionList.map((el, index) => {
                 return <option value={index} key={index}>{el}</option>
             })}
