@@ -30,8 +30,14 @@ function Menu() {
 
                 <section className='menu__add'>
                     <label>add vehicle</label>
-                    <SelectCarBrand value={ctxStoreVal.values.selectedCarBrand} updatedOptionList={ctxStoreVal.values.carBrand} setSelectedCarBrand={ctxStoreVal.func.setSelectedCarBrand} />
-                    <SelectCarModel updatedOptionList={ctxStoreVal.values.carModel[ctxStoreVal.values.selectedCarBrand]} />
+                    <SelectCarBrand
+                        value={ctxStoreVal.values.selectedCarBrand}
+                        updatedOptionList={ctxStoreVal.values.carBrand}
+                        setSelectedCarBrand={ctxStoreVal.func.setSelectedCarBrand} />
+                    <SelectCarModel
+                        value={ctxStoreVal.values.selectedCarModel}
+                        updatedOptionList={ctxStoreVal.values.carModel[ctxStoreVal.values.selectedCarBrand]}
+                        setSelectedCarModel={ctxStoreVal.func.setSelectedCarModel} />
                     <button>add vehicle</button>
                 </section>
             </div>

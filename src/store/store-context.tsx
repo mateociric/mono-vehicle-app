@@ -6,11 +6,14 @@ const ctxValues: TCtxValues = {
         carBrand: ['Mercedes-Benz', 'BMW'],
         carModel: [['M1', 'M2'], ['B1', 'B2']],
         selectedCarBrand: 0,
+        selectedCarModel: 0,
     },
     func: {
         addCarBrand: () => { },
         removeCarBrand: () => { },
         setSelectedCarBrand: () => { },
+        addCarModel: () => { },
+        setSelectedCarModel: () => { },
     }
 }
 
@@ -20,6 +23,7 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
     const [carBrand, modifieCarBrand] = useState<string[]>(['Mercedes-Benz', 'BMW']);
     const [carModel, modifieCarModel] = useState<string[][]>([['M1', 'M2'], ['B1', 'B2']]);
     const [selectedCarBrand, setSelectedCarBrand] = useState<number>(0);
+    const [selectedCarModel, setSelectedCarModel] = useState<number>(0);
 
     return (
         <>
@@ -28,6 +32,7 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                     carBrand,
                     carModel,
                     selectedCarBrand,
+                    selectedCarModel,
                 },
                 func: {
                     addCarBrand: (carBrandInputValue: string) => {
@@ -62,6 +67,20 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                         //later to display modal
                     },
                     setSelectedCarBrand,
+                    addCarModel: (carModelInputValue: string) => {
+                        const carModelIsAlreadyExist = carModel[selectedCarBrand].some((el) => {
+                            return el.toLowerCase() === carModelInputValue.toLowerCase();
+                        });
+                        if (!carModelIsAlreadyExist) {
+                            const newArr = carModel;
+                            console.log(newArr, carModel)
+                            newArr[selectedCarBrand] = [...newArr[selectedCarBrand], carModelInputValue]
+                            modifieCarModel(newArr);
+                            setSelectedCarModel(carModel[1].length)
+                        }
+                    },
+                    setSelectedCarModel,
+
                 }
             }}>
                 {props.children}
