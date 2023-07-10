@@ -1,16 +1,17 @@
 type TCtxValues = {
     values: {
-        carBrand: string[],
-        carModel: string[][],
-        selectedCarBrand: number,
-        selectedCarModel: number,
+        carBrandList: string[],
+        carModelList: string[][],
+        carBrandSelectVal: number,
+        carModelSelectVal: number,
     },
     func: {
         addCarBrand: Function,
         removeCarBrand: Function,
-        setSelectedCarBrand: Function,
+        setCarBrandSelectVal: Function,
         addCarModel: Function,
-        setSelectedCarModel: Function,
+        removeCarModel: Function,
+        setCarModelSelectVal: Function,
     },
 }
 

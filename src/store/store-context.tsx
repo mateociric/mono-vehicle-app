@@ -3,83 +3,91 @@ import TCtxValues from 'model/model-ctxStore';
 
 const ctxValues: TCtxValues = {
     values: {
-        carBrand: ['Mercedes-Benz', 'BMW'],
-        carModel: [['M1', 'M2'], ['B1', 'B2']],
-        selectedCarBrand: 0,
-        selectedCarModel: 0,
+        carBrandList: ['Mercedes-Benz', 'BMW'],
+        carModelList: [['M1', 'M2'], ['B1', 'B2']],
+        carBrandSelectVal: 0,
+        carModelSelectVal: 0,
     },
     func: {
         addCarBrand: () => { },
         removeCarBrand: () => { },
-        setSelectedCarBrand: () => { },
+        setCarBrandSelectVal: () => { },
         addCarModel: () => { },
-        setSelectedCarModel: () => { },
-    }
+        removeCarModel: () => { },
+        setCarModelSelectVal: () => { },
+    },
 }
 
 const ctxStoreValues = React.createContext(ctxValues);
 
 export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
-    const [carBrand, modifieCarBrand] = useState<string[]>(['Mercedes-Benz', 'BMW']);
-    const [carModel, modifieCarModel] = useState<string[][]>([['M1', 'M2'], ['B1', 'B2']]);
-    const [selectedCarBrand, setSelectedCarBrand] = useState<number>(0);
-    const [selectedCarModel, setSelectedCarModel] = useState<number>(0);
+    const [carBrandList, setCarBrandList] = useState<string[]>(['Mercedes-Benz', 'BMW']);
+    const [carModelList, setCarModelList] = useState<string[][]>([['M1', 'M2'], ['B1', 'B2']]);
+    const [carBrandSelectVal, setCarBrandSelectVal] = useState<number>(0);
+    const [carModelSelectVal, setCarModelSelectVal] = useState<number>(0);
 
     return (
         <>
             <ctxStoreValues.Provider value={{
                 values: {
-                    carBrand,
-                    carModel,
-                    selectedCarBrand,
-                    selectedCarModel,
+                    carBrandList,
+                    carModelList,
+                    carBrandSelectVal,
+                    carModelSelectVal,
                 },
                 func: {
                     addCarBrand: (carBrandInputValue: string) => {
-                        const carBrandIsAlreadyExist = carBrand.some((el) => {
+                        const carBrandIsAlreadyExist = carBrandList.some((el) => {
                             return el.toLowerCase() === carBrandInputValue.toLowerCase();
                         });
                         if (!carBrandIsAlreadyExist) {
-                            modifieCarBrand((prevState) => {
+                            setCarBrandList((prevState) => {
                                 return [...prevState, carBrandInputValue]
                             });
                             //when new car brand created update <option> for new car model
-                            modifieCarModel((prevState) => {
+                            setCarModelList((prevState) => {
                                 return [...prevState, []]
                             });
-                            setSelectedCarBrand(carBrand.length)
-                            //later to display modal
+                            setCarBrandSelectVal(carBrandList.length)
                         }
                     },
                     removeCarBrand: (carBrandInputValue: string) => {
-                        if (carBrand.length > 1) {
-                            const removedCarBrend = carBrand.filter((el) => {
+                        if (carBrandList.length > 1) {
+                            const removedCarBrend = carBrandList.filter((el) => {
                                 return el.toLowerCase() !== carBrandInputValue.toLowerCase();
                             });
-                            const indexToBeRemovedCarModel = carBrand.indexOf(carBrandInputValue);
-                            const removedCarModel = carModel.filter((el, index) => {
+                            const indexToBeRemovedCarModel = carBrandList.indexOf(carBrandInputValue);
+                            const removedCarModel = carModelList.filter((el, index) => {
                                 return index !== indexToBeRemovedCarModel
-                            })
-                            modifieCarModel(removedCarModel)
-                            modifieCarBrand(removedCarBrend);
-                            setSelectedCarBrand(0)
+                            });
+                            setCarModelList(removedCarModel)
+                            setCarBrandList(removedCarBrend);
+                            setCarBrandSelectVal(0)
                         }
-                        //later to display modal
                     },
-                    setSelectedCarBrand,
+                    setCarBrandSelectVal,
                     addCarModel: (carModelInputValue: string) => {
-                        const carModelIsAlreadyExist = carModel[selectedCarBrand].some((el) => {
+                        const carModelIsAlreadyExist = carModelList[carBrandSelectVal].some((el) => {
                             return el.toLowerCase() === carModelInputValue.toLowerCase();
                         });
                         if (!carModelIsAlreadyExist) {
-                            const newArr = carModel;
-                            console.log(newArr, carModel)
-                            newArr[selectedCarBrand] = [...newArr[selectedCarBrand], carModelInputValue]
-                            modifieCarModel(newArr);
-                            setSelectedCarModel(carModel[1].length)
+                            //!!!always to make copy of array, not refernce (arr = carModelList)
+                            const arr = carModelList.map((el) => { return el });
+                            arr[carBrandSelectVal] = [...arr[carBrandSelectVal], carModelInputValue]
+                            setCarModelList(arr)
+                            setCarModelSelectVal(carModelList[carBrandSelectVal].length)
                         }
                     },
-                    setSelectedCarModel,
+                    removeCarModel: (carModelInputValue: string) => {
+                        const removedCarModel = carModelList[carBrandSelectVal].filter((el) => {
+                            return el.toLowerCase() !== carModelInputValue.toLowerCase();
+                        });
+                        const arr = carModelList.map((el) => { return el });
+                        arr[carBrandSelectVal] = removedCarModel;
+                        setCarModelList(arr);
+                        setCarModelSelectVal(0);
+                    },
+                    setCarModelSelectVal,
 
                 }
             }}>

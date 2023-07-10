@@ -14,9 +14,10 @@
 }
 
 .header {
+    border-bottom: .1rem solid $col-pure-white;
     grid-area: header;
     width: 100%;
-    background-color: $col-header;
+    background-color: $col-main;
 }
 
 .aside {

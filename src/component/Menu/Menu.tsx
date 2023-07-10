@@ -31,13 +31,13 @@ function Menu() {
                 <section className='menu__add'>
                     <label>add vehicle</label>
                     <SelectCarBrand
-                        value={ctxStoreVal.values.selectedCarBrand}
-                        updatedOptionList={ctxStoreVal.values.carBrand}
-                        setSelectedCarBrand={ctxStoreVal.func.setSelectedCarBrand} />
+                        value={ctxStoreVal.values.carBrandSelectVal}
+                        updatedOptionList={ctxStoreVal.values.carBrandList}
+                        setCarBrandSelectVal={ctxStoreVal.func.setCarBrandSelectVal} />
                     <SelectCarModel
-                        value={ctxStoreVal.values.selectedCarModel}
-                        updatedOptionList={ctxStoreVal.values.carModel[ctxStoreVal.values.selectedCarBrand]}
-                        setSelectedCarModel={ctxStoreVal.func.setSelectedCarModel} />
+                        value={ctxStoreVal.values.carModelSelectVal}
+                        updatedOptionList={ctxStoreVal.values.carModelList[ctxStoreVal.values.carBrandSelectVal]}
+                        setCarModelSelectVal={ctxStoreVal.func.setCarModelSelectVal} />
                     <button>add vehicle</button>
                 </section>
             </div>

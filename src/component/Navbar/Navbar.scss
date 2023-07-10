@@ -10,17 +10,18 @@
 
     a {
         width: 33.3%;
-        padding: 3.5rem 0 3.5rem;
+        padding: 6.5rem 0 0.5rem;
         font-size: $font-size-a;
         color: $col-pure-white;
         text-align: center;
         text-decoration: none;
-        transition: background-color, padding .5s;
+        background-color: $col-bg-a;
+        transition: background-color, padding, .5s;
 
         &:hover,
         &.active {
-            background-color: $col-a-hover;
-            padding: 6.5rem 0 0.5rem;
+            padding: 3.5rem 0 3.5rem;
+            background-color: $col-bg-a-hover;
         }
 
     }

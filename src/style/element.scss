@@ -9,7 +9,7 @@ button {
     transition: box-shadow .25s;
 
     &:hover {
-        box-shadow: 0 0 .5rem .1rem $col-header, 0 0 1.5rem .25rem $col-header;
+        box-shadow: 0 0 .5rem .1rem $col-glow-effect, 0 0 1.5rem .25rem $col-glow-effect;
     }
 }
 
