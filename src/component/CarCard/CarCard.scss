@@ -1,6 +1,6 @@
 @import 'style/variable.scss';
 
-.vehicle-card {
+.car-card {
     width: 100%;
     aspect-ratio: 2/1.25;
     display: flex;
@@ -20,7 +20,7 @@
         }
     }
 
-    .vehicle-card__details {
+    .car-card__details {
         text-align: center;
     }
 

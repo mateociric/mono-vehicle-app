@@ -1,9 +1,12 @@
+import { TCar } from "./model-car";
+
 type TCtxValues = {
     values: {
         carBrandList: string[],
         carModelList: string[][],
         carBrandSelectVal: number,
         carModelSelectVal: number,
+        carList: TCar[],
     },
     func: {
         addCarBrand: Function,
@@ -12,6 +15,7 @@ type TCtxValues = {
         addCarModel: Function,
         removeCarModel: Function,
         setCarModelSelectVal: Function,
+        addCarList: Function,
     },
 }
 

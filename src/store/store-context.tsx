@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import TCtxValues from 'model/model-ctxStore';
+import TCtxValues from 'model/model-ctx-store';
+import { TCar } from 'model/model-car';
 
 const ctxValues: TCtxValues = {
     values: {
@@ -7,6 +8,7 @@ const ctxValues: TCtxValues = {
         carModelList: [['M1', 'M2'], ['B1', 'B2']],
         carBrandSelectVal: 0,
         carModelSelectVal: 0,
+        carList: [],
     },
     func: {
         addCarBrand: () => { },
@@ -15,6 +17,7 @@ const ctxValues: TCtxValues = {
         addCarModel: () => { },
         removeCarModel: () => { },
         setCarModelSelectVal: () => { },
+        addCarList: () => { },
     },
 }
 
@@ -25,6 +28,8 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
     const [carModelList, setCarModelList] = useState<string[][]>([['M1', 'M2'], ['B1', 'B2']]);
     const [carBrandSelectVal, setCarBrandSelectVal] = useState<number>(0);
     const [carModelSelectVal, setCarModelSelectVal] = useState<number>(0);
+    const [carList, setCarList] = useState<TCar[]>([]);
+    const [typeOfSort, setTypeOfSort] = useState<string>('id');
 
     return (
         <>
@@ -34,6 +39,7 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                     carModelList,
                     carBrandSelectVal,
                     carModelSelectVal,
+                    carList,
                 },
                 func: {
                     addCarBrand: (carBrandInputValue: string) => {
@@ -88,6 +94,11 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                         setCarModelSelectVal(0);
                     },
                     setCarModelSelectVal,
+                    addCarList: (newCar: TCar) => {
+                        setCarList((prevState: TCar[]) => {
+                            return [...prevState, newCar];
+                        });
+                    },
 
                 }
             }}>
