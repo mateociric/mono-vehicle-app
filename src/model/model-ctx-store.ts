@@ -7,6 +7,8 @@ type TCtxValues = {
         carBrandSelectVal: number,
         carModelSelectVal: number,
         carList: TCar[],
+        typeOfSort: string,
+        searchCarInputVal: string,
     },
     func: {
         addCarBrand: Function,
@@ -15,7 +17,9 @@ type TCtxValues = {
         addCarModel: Function,
         removeCarModel: Function,
         setCarModelSelectVal: Function,
-        addCarList: Function,
+        addNewCarToCarList: Function,
+        setTypeOfSort: Function,
+        setSearchCarInputVal: Function,
     },
 }
 

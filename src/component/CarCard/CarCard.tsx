@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import 'component/CarCard/CarCard.scss';
 import { TCar } from 'model/model-car';
 /* default image used from - https://www.pexels.com/search/car/ - */
@@ -9,6 +9,9 @@ function CarCard(props: { carInfo: TCar }) {
 
     return (
         <div className='car-card'>
+            <div className='car-card__id'>
+                <p>{props.carInfo.id}</p>
+            </div>
             <img
                 onError={() => setImageIsVisible(false)}
                 src={imageIsVisible ? props.carInfo.carImage : defaultImage}

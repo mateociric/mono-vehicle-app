@@ -9,6 +9,8 @@ const ctxValues: TCtxValues = {
         carBrandSelectVal: 0,
         carModelSelectVal: 0,
         carList: [],
+        typeOfSort: 'id',
+        searchCarInputVal: '',
     },
     func: {
         addCarBrand: () => { },
@@ -17,7 +19,9 @@ const ctxValues: TCtxValues = {
         addCarModel: () => { },
         removeCarModel: () => { },
         setCarModelSelectVal: () => { },
-        addCarList: () => { },
+        addNewCarToCarList: () => { },
+        setTypeOfSort: () => { },
+        setSearchCarInputVal: () => {},
     },
 }
 
@@ -30,6 +34,7 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
     const [carModelSelectVal, setCarModelSelectVal] = useState<number>(0);
     const [carList, setCarList] = useState<TCar[]>([]);
     const [typeOfSort, setTypeOfSort] = useState<string>('id');
+    const [searchCarInputVal, setSearchCarInputVal] = useState<string>('');
 
     return (
         <>
@@ -40,6 +45,8 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                     carBrandSelectVal,
                     carModelSelectVal,
                     carList,
+                    typeOfSort,
+                    searchCarInputVal,
                 },
                 func: {
                     addCarBrand: (carBrandInputValue: string) => {
@@ -54,7 +61,7 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                             setCarModelList((prevState) => {
                                 return [...prevState, []]
                             });
-                            setCarBrandSelectVal(carBrandList.length)
+                            setCarBrandSelectVal(carBrandList.length);
                         }
                     },
                     removeCarBrand: (carBrandInputValue: string) => {
@@ -94,11 +101,13 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                         setCarModelSelectVal(0);
                     },
                     setCarModelSelectVal,
-                    addCarList: (newCar: TCar) => {
+                    addNewCarToCarList: (newCar: TCar) => {
                         setCarList((prevState: TCar[]) => {
                             return [...prevState, newCar];
                         });
                     },
+                    setTypeOfSort,
+                    setSearchCarInputVal,
 
                 }
             }}>

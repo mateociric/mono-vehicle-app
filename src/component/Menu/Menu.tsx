@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import 'component/Menu/Menu.scss'
+import SelectSort from './SelectSort/SelectSort';
 import SelectCarBrand from 'component/Menu/SelectCarBrand/SelectCarBrand';
 import SelectCarModel from 'component/Menu/SelectCarModel/SelectCarModel';
 import ctxStoreValues from 'store/store-context';
@@ -17,12 +18,12 @@ function Menu() {
 
                 <section className='menu__search'>
                     <label>search car</label>
-                    <input type="text" />
+                    <input type="text" onKeyUp={(event: any) => ctxStoreVal.func.setSearchCarInputVal(event.target.value)} />
                 </section>
 
                 <section className='menu__sort'>
                     <label>sort car</label>
-                    
+                    <SelectSort setTypeOfSort={ctxStoreVal.func.setTypeOfSort}/>
                 </section>
 
                 <section className='menu__add'>
@@ -42,7 +43,7 @@ function Menu() {
                             carImage: '',
                             id: !ctxStoreVal.values.carList.length ? 1 : ctxStoreVal.values.carList[ctxStoreVal.values.carList.length - 1].id + 1,
                         }
-                        ctxStoreVal.func.addCarList(newCar);
+                        ctxStoreVal.func.addNewCarToCarList(newCar);
                     }}>add car</button>
                 </section>
             </div>

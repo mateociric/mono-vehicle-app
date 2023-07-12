@@ -1,11 +1,11 @@
-function SelectSort() {
+function SelectSort(props: { setTypeOfSort: Function }) {
 
     return (
-        <select name="" id="">
+        <select onChange={(event) => { props.setTypeOfSort(event.target.value) }}>
             <option value="id">sort by ID</option>
-            <option value="type">sort by BRAND</option>
-            <option value="name">sort by MODEL</option>
-        </select>
+            <option value="carBrand">sort by BRAND</option>
+            <option value="carModel">sort by MODEL</option>
+        </select >
     )
 }
 
