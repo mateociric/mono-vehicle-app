@@ -3,8 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 import Navbar from 'component/Navbar/Navbar';
 import Homepage from 'page/Homepage/Homepage';
-import Update from 'page/Update/Update';
+import UpdateCarList from 'page/UpdateCarList/UpdateCarList';
 import Help from 'page/Help/Help';
+import UpdateCarCard from 'page/UpdateCarCard/UpdateCarCard';
 import THref from 'model/model-navbar-href';
 import Menu from 'component/Menu/Menu';
 
@@ -14,8 +15,8 @@ const href: THref = {
     linkName: 'HOMEPAGE',
   },
   update: {
-    path: '/Update',
-    linkName: 'UPDATE',
+    path: '/UpdateCarList',
+    linkName: 'UPDATE CAR LIST',
   },
   help: {
     path: '/Help',
@@ -33,8 +34,9 @@ function App() {
       <main className='main'>
         <Routes>
           <Route path='/*' element={<Homepage />}></Route>
-          <Route path='/Update' element={<Update />}></Route>
-          <Route path='/Help' element={<Help />}></Route>
+          <Route path='/UpdateCarList/*' element={<UpdateCarList />}></Route>
+          <Route path='/Help/*' element={<Help />}></Route>
+          <Route path='/UpdateCarCard/:id' element={<UpdateCarCard />}></Route>
         </Routes>
       </main>
 

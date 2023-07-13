@@ -3,7 +3,7 @@ import TCtxValues from 'model/model-ctx-store';
 import { TCar } from 'model/model-car';
 
 const ctxValues: TCtxValues = {
-    values: {
+    val: {
         carBrandList: ['Mercedes-Benz', 'BMW'],
         carModelList: [['M1', 'M2'], ['B1', 'B2']],
         carBrandSelectVal: 0,
@@ -21,7 +21,8 @@ const ctxValues: TCtxValues = {
         setCarModelSelectVal: () => { },
         addNewCarToCarList: () => { },
         setTypeOfSort: () => { },
-        setSearchCarInputVal: () => {},
+        setSearchCarInputVal: () => { },
+        updateCarToCarList: () => { },
     },
 }
 
@@ -39,7 +40,7 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
     return (
         <>
             <ctxStoreValues.Provider value={{
-                values: {
+                val: {
                     carBrandList,
                     carModelList,
                     carBrandSelectVal,
@@ -108,7 +109,9 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                     },
                     setTypeOfSort,
                     setSearchCarInputVal,
-
+                    updateCarToCarList: (carListWithUpdatedCar: TCar[]) => {
+                        setCarList(carListWithUpdatedCar);
+                    }
                 }
             }}>
                 {props.children}

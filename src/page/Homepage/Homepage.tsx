@@ -7,12 +7,12 @@ import { TCar } from 'model/model-car';
 
 function Homepage() {
 
-    const ctxStoreVal = useContext(ctxStoreValues);
-    const carListSorted = ctxStoreVal.values.carList.map((el: TCar) => {
+    const cSV = useContext(ctxStoreValues);
+    const carListSorted = cSV.val.carList.map((el: TCar) => {
         return el
     }).sort((a: any, b: any) => {
-        let typeOfSort = ctxStoreVal.values.typeOfSort;
-        if (ctxStoreVal.values.typeOfSort === 'id') {
+        let typeOfSort = cSV.val.typeOfSort;
+        if (cSV.val.typeOfSort === 'id') {
             return a.id - b.id;
         } else {
             if ((a[typeOfSort]).toLowerCase() < b[typeOfSort].toLowerCase()) { return -1; }
@@ -23,11 +23,11 @@ function Homepage() {
     const carListFiltered = carListSorted.map((el: TCar) => {
         return el;
     }).filter((el: TCar) => {
-        let searchForString = ctxStoreVal.values.searchCarInputVal;
+        let searchForString = cSV.val.searchCarInputVal;
         return (el.carBrand.toLowerCase() + el.carModel.toLowerCase()).startsWith(searchForString.toLowerCase());
     });
     const carListToBeDisplayed = () => {
-        const arrToBeDisplayed = ctxStoreVal.values.searchCarInputVal ? carListFiltered : carListSorted;
+        const arrToBeDisplayed = cSV.val.searchCarInputVal ? carListFiltered : carListSorted;
         return arrToBeDisplayed.map((el) => {
             return <CarCard
                 carInfo={new Car(el)}

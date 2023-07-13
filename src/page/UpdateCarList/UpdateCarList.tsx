@@ -1,21 +1,21 @@
 import { useContext, useState } from 'react';
-import 'page/Update/Update.scss';
+import 'page/UpdateCarList/UpdateCarList.scss';
 import ctxStoreValues from 'store/store-context';
 
-function Update() {
-    const ctxStoreVal = useContext(ctxStoreValues);
+function UpdateCarList() {
+    const cSV = useContext(ctxStoreValues);
     const [isCarBrandDisplyed, setIsCarBrandDisplyed] = useState<boolean>(true);
     const [inputValue, setInputValue] = useState<string>('');
 
     return (
-        <div className='update'>
+        <div className='update-car-list'>
             <label>{isCarBrandDisplyed ? 'Car brand' : 'Car model'}</label>
             <input onKeyUp={(event: React.KeyboardEvent) => setInputValue((event.target as HTMLInputElement).value)} type="text" />
-            <button onClick={() => isCarBrandDisplyed ? ctxStoreVal.func.addCarBrand(inputValue) : ctxStoreVal.func.addCarModel(inputValue)}>Add</button>
-            <button onClick={() => isCarBrandDisplyed ? ctxStoreVal.func.removeCarBrand(inputValue) : ctxStoreVal.func.removeCarModel(inputValue)}>Remove</button>
+            <button onClick={() => isCarBrandDisplyed ? cSV.func.addCarBrand(inputValue) : cSV.func.addCarModel(inputValue)}>Add</button>
+            <button onClick={() => isCarBrandDisplyed ? cSV.func.removeCarBrand(inputValue) : cSV.func.removeCarModel(inputValue)}>Remove</button>
             <button onClick={() => setIsCarBrandDisplyed(!isCarBrandDisplyed)}>Switch to {isCarBrandDisplyed ? 'model' : 'brand'}</button>
         </div>
     )
 }
 
-export default Update;
+export default UpdateCarList;
