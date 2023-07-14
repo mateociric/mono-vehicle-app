@@ -21,6 +21,7 @@ type TCtxValues = {
         setTypeOfSort: Function,
         setSearchCarInputVal: Function,
         updateCarToCarList: Function,
+        deleteCarFromCarList: Function,
     },
 }
 

@@ -10,6 +10,10 @@
     position: relative;
     text-align: center;
 
+    &:hover .iconTrash {
+        opacity: 1;
+    }
+
     &__id {
         width: 10%;
         aspect-ratio: 1;
@@ -24,16 +28,11 @@
         background-color: $col-pure-black;
     }
 
+
     &__image {
         width: 100%;
         aspect-ratio: 2/1.25;
         object-fit: cover;
-        transition: transform .35s;
-
-        &:hover {
-            transform: scale(1.05);
-            transform-origin: center;
-        }
     }
 
     & p {
@@ -41,4 +40,21 @@
         font-size: 2rem;
         color: $col-pure-white;
     }
+
+    & .car-card__details {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+}
+
+.iconTrash {
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+    z-index: 1;
+    color: white;
+    opacity: 0;
+    transition: opacity .4s;
 }

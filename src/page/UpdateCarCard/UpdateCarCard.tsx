@@ -19,7 +19,8 @@ function UpdateCarCard() {
             <p>{carFromArray.length ? carFromArray[0].carModel : 'CREATED'}</p>
             <input
                 onChange={(event: any) => { setCarImageInputVal(event.target.value) }}
-                type="text" />
+                type="text"
+                defaultValue={carFromArray[0].carImage} />
             <button onClick={
                 () => updateCarCard(
                     cSV.val.carBrandList,

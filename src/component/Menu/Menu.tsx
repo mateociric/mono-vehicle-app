@@ -38,16 +38,14 @@ function Menu() {
                         value={cSV.val.carModelSelectVal}
                         updatedOptionList={cSV.val.carModelList[cSV.val.carBrandSelectVal]}
                         setCarModelSelectVal={cSV.func.setCarModelSelectVal} />
-                    <button onClick={currLocation.pathname === '/' ?
-                        () => addNewCar(
-                            cSV.val.carBrandList,
-                            cSV.val.carBrandSelectVal,
-                            cSV.val.carModelList,
-                            cSV.val.carModelSelectVal,
-                            cSV.val.carList,
-                            cSV.func.addNewCarToCarList) :
-                        () => { }
-                    }>add car</button>
+                    <button onClick={() => addNewCar(
+                        cSV.val.carBrandList,
+                        cSV.val.carBrandSelectVal,
+                        cSV.val.carModelList,
+                        cSV.val.carModelSelectVal,
+                        cSV.val.carList,
+                        cSV.func.addNewCarToCarList)}
+                        className={currLocation.pathname === '/' ? '' : 'buttonIsHidden'}>add car</button>
                 </section>
             </div >
         </>

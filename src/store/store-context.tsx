@@ -23,6 +23,7 @@ const ctxValues: TCtxValues = {
         setTypeOfSort: () => { },
         setSearchCarInputVal: () => { },
         updateCarToCarList: () => { },
+        deleteCarFromCarList: () => { },
     },
 }
 
@@ -111,7 +112,10 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                     setSearchCarInputVal,
                     updateCarToCarList: (carListWithUpdatedCar: TCar[]) => {
                         setCarList(carListWithUpdatedCar);
-                    }
+                    },
+                    deleteCarFromCarList: (carListWithoutDeletedCar: TCar[]) => {
+                        setCarList(carListWithoutDeletedCar);
+                    },
                 }
             }}>
                 {props.children}
