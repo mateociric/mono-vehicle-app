@@ -2,8 +2,9 @@ function SelectCarBrand(props: { value: number, updatedOptionList: string[], set
 
     return (
         <select
-            value={props.value}
-            onChange={(event: any) => { props.setCarBrandSelectVal(event.target.value) }}>
+            onChange={(event: any) => { props.setCarBrandSelectVal(event.target.value) }}
+            id='car-brand-select'
+            value={props.value}>
             {props.updatedOptionList.map((el, index) => {
                 return <option value={index} key={index}>{el}</option>
             })}

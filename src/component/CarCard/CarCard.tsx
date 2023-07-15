@@ -1,38 +1,40 @@
-/* default-image used from - https://www.pexels.com/search/car/ - */
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import 'component/CarCard/CarCard.scss';
 import ctxStoreValues from 'store/store-context';
 import { TCar } from 'model/model-car';
-import defaultImage from 'image/default-image.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+/* default-image used from - https://www.pexels.com/search/car/ - */
+import defaultImage from 'image/default-image.jpg';
 
 function CarCard(props: { carInfo: TCar }) {
-    const [imageIsVisible, setImageIsVisible] = useState<boolean>(true);
+    const [carImageIsVisible, setCarImageIsVisible] = useState<boolean>(true);
     const cSV = useContext(ctxStoreValues);
     const navigateToUpdateCarCard = useNavigate();
 
     return (
-        <div onClick={() => navigateToUpdateCarCard(`/UpdateCarCard/${props.carInfo.id}`)} className='car-card'>
-            <div className='car-card__id'>
+        <div onClick={() => navigateToUpdateCarCard(`/UpdateCarCard/${props.carInfo.id}`)} className='car-card flex-column'>
+            <div className='car-card__id flex-row'>
                 <p>{props.carInfo.id}</p>
             </div>
+
             <img
-                onError={() => setImageIsVisible(false)}
-                src={imageIsVisible ? props.carInfo.carImage : defaultImage}
+                onError={() => setCarImageIsVisible(false)}
+                src={carImageIsVisible ? props.carInfo.carImage : defaultImage}
                 alt={`${props.carInfo.carBrand} ${props.carInfo.carModel}`}
                 className='car-card__image' />
+
             <section className='car-card__details'>
                 <p>{props.carInfo.carBrand}</p>
                 <p>{props.carInfo.carModel}</p>
                 <FontAwesomeIcon
-                    onClick={(event) => {
+                    onClick={(event: React.MouseEvent) => {
                         event.stopPropagation();
-                        const newArr = cSV.val.carList.filter((el) => {
+                        //remove CarCard
+                        cSV.func.setCarList(cSV.val.carList.filter((el: TCar) => {
                             return el.id !== props.carInfo.id;
-                        });
-                        cSV.func.deleteCarFromCarList(newArr);
+                        }));
                     }}
                     icon={faTrash}
                     size='3x'

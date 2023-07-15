@@ -3,13 +3,12 @@
 .update-car-list {
     width: 100%;
     margin-top: 12.5rem;
-    display: flex;
-    flex-direction: column;
     font-family: $font-main;
     text-align: center;
 
     & input {
         width: 30rem;
+        text-align: center;
     }
 
     & button {

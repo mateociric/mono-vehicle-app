@@ -5,7 +5,7 @@ import SelectSort from './SelectSort/SelectSort';
 import SelectCarBrand from 'component/Menu/SelectCarBrand/SelectCarBrand';
 import SelectCarModel from 'component/Menu/SelectCarModel/SelectCarModel';
 import ctxStoreValues from 'store/store-context';
-import { addNewCar } from 'utility/add-button-func';
+import { addCarToCarList, searchCar } from 'utility/menu-func';
 
 function Menu() {
     const cSV = useContext(ctxStoreValues);
@@ -13,39 +13,46 @@ function Menu() {
 
     return (
         <>
-            <div className='menu'>
-                <section className='menu__title'>
+            <div className='menu flex-column'>
+                <section className='menu__title flex-column'>
                     <p>MENU</p>
                 </section>
 
-                <section className='menu__search'>
-                    <label>search car</label>
-                    <input type="text" onKeyUp={(event: any) => cSV.func.setSearchCarInputVal(event.target.value)} />
+                <section className='menu__search flex-column'>
+                    <label htmlFor='search-input' >search car</label>
+                    <input
+                        onKeyUp={(event: React.KeyboardEvent) => searchCar(event, cSV.func.setSearchCarInputVal)}
+                        id='search-input'
+                        type="text"
+                        placeholder='eneter car brand & car name' />
                 </section>
 
-                <section className='menu__sort'>
-                    <label>sort car</label>
+                <section className='menu__sort flex-column'>
+                    <label htmlFor='sort-select'>sort car</label>
                     <SelectSort setTypeOfSort={cSV.func.setTypeOfSort} />
                 </section>
 
-                <section className='menu__add'>
-                    <label>car</label>
+                <section className='menu__add flex-column'>
+                    <label htmlFor='car-brand-select'>Car</label>
+
                     <SelectCarBrand
                         value={cSV.val.carBrandSelectVal}
                         updatedOptionList={cSV.val.carBrandList}
                         setCarBrandSelectVal={cSV.func.setCarBrandSelectVal} />
+
                     <SelectCarModel
                         value={cSV.val.carModelSelectVal}
                         updatedOptionList={cSV.val.carModelList[cSV.val.carBrandSelectVal]}
                         setCarModelSelectVal={cSV.func.setCarModelSelectVal} />
-                    <button onClick={() => addNewCar(
+
+                    <button onClick={() => addCarToCarList(
                         cSV.val.carBrandList,
                         cSV.val.carBrandSelectVal,
                         cSV.val.carModelList,
                         cSV.val.carModelSelectVal,
                         cSV.val.carList,
-                        cSV.func.addNewCarToCarList)}
-                        className={currLocation.pathname === '/' ? '' : 'buttonIsHidden'}>add car</button>
+                        cSV.func.setCarList)}
+                        className={currLocation.pathname === '/' ? '' : 'buttonIsHidden'}>Create car</button>
                 </section>
             </div >
         </>

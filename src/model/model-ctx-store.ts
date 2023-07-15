@@ -11,17 +11,13 @@ type TCtxValues = {
         searchCarInputVal: string,
     },
     func: {
-        addCarBrand: Function,
-        removeCarBrand: Function,
+        setCarBrandList: Function,
+        setCarModelList: Function,
         setCarBrandSelectVal: Function,
-        addCarModel: Function,
-        removeCarModel: Function,
         setCarModelSelectVal: Function,
-        addNewCarToCarList: Function,
         setTypeOfSort: Function,
         setSearchCarInputVal: Function,
-        updateCarToCarList: Function,
-        deleteCarFromCarList: Function,
+        setCarList: Function,
     },
 }
 

@@ -3,14 +3,26 @@
 .update-car-card {
     width: 100%;
     margin-top: 12.5rem;
-    display: flex;
-    flex-direction: column;
     font-family: $font-main;
     text-align: center;
 
-    & p {
+    & label {
         font-family: $font-main;
-        font-size: 3rem;
-        color: $col-pure-white;
+        font-size: $font-size-label;
+        color: $col-label;
+    }
+
+    & input {
+        width: 30rem;
+        text-align: center;
+
+        ::placeholder {
+            text-align: center;
+        }
+    }
+
+    & button {
+        width: 15%;
+        margin-top: 5rem;
     }
 }
