@@ -1,16 +1,22 @@
 {
-    "carList": [
-        {
-            "carBrand": "Mercedes-Benz",
-            "carModel": "M1",
-            "carImage": "https://di-uploads-pod1.dealerinspire.com/mercedesbenzofnortholmsted/uploads/2017/08/2018-GT-C2.jpg",
-            "id": 1
-        },
-        {
-            "carBrand": "BMW",
-            "carModel": "B1",
-            "carImage": "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym13fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-            "id": 2
-        }
-    ]
+  "carList": [
+    {
+      "carBrand": "BMW",
+      "carModel": "B2",
+      "carImage": "",
+      "id": 2
+    },
+    {
+      "carBrand": "BMW",
+      "carModel": "B2",
+      "carImage": "",
+      "id": 4
+    },
+    {
+      "carBrand": "Mercedes-Benz",
+      "carModel": "M1",
+      "carImage": "",
+      "id": 5
+    }
+  ]
 }

@@ -9,6 +9,7 @@ type TCtxValues = {
         carList: TCar[],
         typeOfSort: string,
         searchCarInputVal: string,
+        appIsRunFirstTime: boolean,
     },
     func: {
         setCarBrandList: Function,
@@ -18,6 +19,7 @@ type TCtxValues = {
         setTypeOfSort: Function,
         setSearchCarInputVal: Function,
         setCarList: Function,
+        setAppIsRunFirstTime: Function,
     },
 }
 

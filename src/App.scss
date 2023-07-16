@@ -21,14 +21,13 @@
 }
 
 .aside {
-    height: 100%;
     border-left: .1rem solid $col-pure-white;
     grid-area: aside;
+    position: relative;
     background-color: $col-aside;
 }
 
 .main {
-    height: 100%;
     grid-area: main;
     background-color: $col-main;
 }

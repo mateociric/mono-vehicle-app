@@ -1,0 +1,10 @@
+@import 'style/variable.scss';
+
+.backdrop {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 2;
+    opacity: .9;
+    background-color: $col-pure-black;
+}

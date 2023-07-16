@@ -1,6 +1,7 @@
 import { TCar } from "model/model-car";
+import { updateCarToDatabase } from "./databse-func";
 
-function updateCarCard(
+export function updateCar(
     carBrandList: string[],
     carBrandSelectedVal: number,
     carModelList: string[][],
@@ -8,8 +9,9 @@ function updateCarCard(
     carImageInputVal: string,
     id: number,
     carList: TCar[],
-    setCarList: Function) {
-    const updateCar: TCar = {
+    setCarList: Function,
+    setModalIsVisibleForDatabaseError: Function) {
+    const updatedCar: TCar = {
         carBrand: carBrandList[carBrandSelectedVal],
         carModel: carModelList[carBrandSelectedVal][carModelSelectVal],
         carImage: carImageInputVal,
@@ -17,11 +19,10 @@ function updateCarCard(
     }
     const updatedArr = carList.map((el) => {
         if (el.id === id) {
-            el = updateCar;
+            el = updatedCar;
         }
         return el;
-    })
+    });
     setCarList(updatedArr);
+    updateCarToDatabase(id, updatedCar, setModalIsVisibleForDatabaseError);
 }
-
-export default updateCarCard;

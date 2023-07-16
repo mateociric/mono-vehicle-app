@@ -1,4 +1,3 @@
-import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 import Navbar from 'component/Navbar/Navbar';
@@ -6,25 +5,11 @@ import Homepage from 'page/Homepage/Homepage';
 import UpdateCarList from 'page/UpdateCarList/UpdateCarList';
 import Help from 'page/Help/Help';
 import UpdateCarCard from 'page/UpdateCarCard/UpdateCarCard';
-import THref from 'model/model-navbar-href';
 import Menu from 'component/Menu/Menu';
-
-const href: THref = {
-  homepage: {
-    path: '/',
-    linkName: 'HOMEPAGE',
-  },
-  update: {
-    path: '/UpdateCarList',
-    linkName: 'UPDATE CAR LIST',
-  },
-  help: {
-    path: '/Help',
-    linkName: 'HELP',
-  },
-}
+import { href } from 'utility/app-prop-href';
 
 function App() {
+
   return (
     <div className='container'>
       <header className="header">

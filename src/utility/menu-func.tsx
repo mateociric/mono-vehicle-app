@@ -1,4 +1,5 @@
 import { TCar } from "model/model-car"
+import { addCarToDatabase } from "./databse-func";
 
 export function addCarToCarList(
     carBrandList: string[],
@@ -6,7 +7,8 @@ export function addCarToCarList(
     carModelList: string[][],
     carModelSelectVal: number,
     carList: TCar[],
-    setCarList: Function,) {
+    setCarList: Function,
+    setModalIsVisibleForDatabaseError: Function) {
     const newCar: TCar = {
         carBrand: carBrandList[carBrandSelectedVal],
         carModel: carModelList[carBrandSelectedVal][carModelSelectVal],
@@ -15,7 +17,8 @@ export function addCarToCarList(
     }
     setCarList((prevState: TCar[]) => {
         return [...prevState, newCar];
-    })
+    });
+    addCarToDatabase(newCar, setModalIsVisibleForDatabaseError);
 }
 
 export function searchCar(event: React.KeyboardEvent, setSearchCarInputVal: Function) {

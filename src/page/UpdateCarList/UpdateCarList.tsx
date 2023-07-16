@@ -7,7 +7,7 @@ function UpdateCarList() {
     const cSV = useContext(ctxStoreValues);
     const [isCarBrandDisplyed, setIsCarBrandDisplyed] = useState<boolean>(true);
     const [inputValue, setInputValue] = useState<string>('');
-
+    
     return (
         <div className='update-car-list flex-column'>
             <label htmlFor='inputBrandModel'>{isCarBrandDisplyed ? 'Car brand' : 'Car model'}</label>

@@ -2,7 +2,7 @@ function SelectCarBrand(props: { value: number, updatedOptionList: string[], set
 
     return (
         <select
-            onChange={(event: any) => { props.setCarBrandSelectVal(event.target.value) }}
+            onChange={(event: React.ChangeEvent) => { props.setCarBrandSelectVal((event.target as HTMLSelectElement).value) }}
             id='car-brand-select'
             value={props.value}>
             {props.updatedOptionList.map((el, index) => {

@@ -52,9 +52,9 @@ export function addCarModel(
     if (!carModelIsAlreadyExist) {
         //!!!always to make copy of array, not refernce (newCarModelLis = carModelList)
         const newCarModelList = carModelList.map((el) => { return el });
-        newCarModelList[carBrandSelectVal] = [...newCarModelList[carBrandSelectVal], inputValue]
-        setCarModelList(newCarModelList)
-        setCarModelSelectVal(carModelList[carBrandSelectVal].length)
+        newCarModelList[carBrandSelectVal] = [...newCarModelList[carBrandSelectVal], inputValue];
+        setCarModelList(newCarModelList);
+        setCarModelSelectVal(carModelList[carBrandSelectVal].length);
     }
 }
 

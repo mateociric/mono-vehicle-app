@@ -1,0 +1,32 @@
+@import 'style/variable';
+
+.overlay {
+    width: 30%;
+    border: .1rem solid $col-overlay-border;
+    padding: 0 2rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    color: $col-label;
+    text-align: center;
+    background-color: $col-overlay-bg;
+
+    &__message {
+        margin-top: 1rem;
+        font-family: $font-main;
+        font-size: $font-size-modal-message;
+        color: $col-pure-white;
+    }
+
+    &__button {
+        width: 100%;
+        margin: 4rem 0 2rem;
+    }
+
+    button {
+        width: 30%;
+        margin: 0 .5rem 0 .5rem;
+    }
+}

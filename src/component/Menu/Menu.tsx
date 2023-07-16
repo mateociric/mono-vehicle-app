@@ -1,18 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation } from "react-router";
 import 'component/Menu/Menu.scss'
 import SelectSort from './SelectSort/SelectSort';
 import SelectCarBrand from 'component/Menu/SelectCarBrand/SelectCarBrand';
 import SelectCarModel from 'component/Menu/SelectCarModel/SelectCarModel';
+import Modal from 'component/Modal/Modal';
 import ctxStoreValues from 'store/store-context';
 import { addCarToCarList, searchCar } from 'utility/menu-func';
 
 function Menu() {
     const cSV = useContext(ctxStoreValues);
+    const [modalIsVisibleForDatabaseError, setModalIsVisibleForDatabaseError] = useState<boolean>(false);
     const currLocation = useLocation();
+
+    function onClickHandler() {
+        setModalIsVisibleForDatabaseError(false);
+    }
 
     return (
         <>
+            {modalIsVisibleForDatabaseError && <Modal
+                onClick={onClickHandler}
+                message='Something went wrong. Car is not saved to database.'
+                hasButtonNO={false} />}
             <div className='menu flex-column'>
                 <section className='menu__title flex-column'>
                     <p>MENU</p>
@@ -51,7 +61,8 @@ function Menu() {
                         cSV.val.carModelList,
                         cSV.val.carModelSelectVal,
                         cSV.val.carList,
-                        cSV.func.setCarList)}
+                        cSV.func.setCarList,
+                        setModalIsVisibleForDatabaseError)}
                         className={currLocation.pathname === '/' ? '' : 'buttonIsHidden'}>Create car</button>
                 </section>
             </div >
