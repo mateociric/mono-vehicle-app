@@ -42,3 +42,26 @@ label {
     font-size: $font-size-label;
     color: $col-label;
 }
+
+article {
+    width: 75%;
+    margin-bottom: 4rem;
+    padding-left: 10rem;
+    font-family: $font-main;
+    font-weight:100;
+    display: block;
+    color: $col-glow-effect;
+
+    &:first-of-type {
+        margin-top: 4rem;
+    }
+
+    & p {
+        color: rgb(133, 133, 133);
+        font-size: 2rem;
+    }
+}
+
+h1 {
+    font-size: 3rem;
+}

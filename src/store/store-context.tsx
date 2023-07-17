@@ -12,6 +12,7 @@ const ctxValues: TCtxValues = {
         typeOfSort: 'id',
         searchCarInputVal: '',
         appIsRunFirstTime: true,
+        isCarCardDeletedFromDatabase: false,
     },
     func: {
         setCarBrandList: () => { },
@@ -21,7 +22,8 @@ const ctxValues: TCtxValues = {
         setTypeOfSort: () => { },
         setSearchCarInputVal: () => { },
         setCarList: () => { },
-        setAppIsRunFirstTime: () => { }
+        setAppIsRunFirstTime: () => { },
+        setIsCarCardDeletedFromDatabase: () => { },
     },
 }
 
@@ -36,6 +38,7 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
     const [typeOfSort, setTypeOfSort] = useState<string>('id');
     const [searchCarInputVal, setSearchCarInputVal] = useState<string>('');
     const [appIsRunFirstTime, setAppIsRunFirstTime] = useState<boolean>(true);
+    const [isCarCardDeletedFromDatabase, setIsCarCardDeletedFromDatabase] = useState<boolean>(false);
 
     return (
         <>
@@ -49,6 +52,7 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                     typeOfSort,
                     searchCarInputVal,
                     appIsRunFirstTime,
+                    isCarCardDeletedFromDatabase,
                 },
                 func: {
                     setCarBrandList,
@@ -59,6 +63,7 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                     setSearchCarInputVal,
                     setCarList,
                     setAppIsRunFirstTime,
+                    setIsCarCardDeletedFromDatabase,
                 }
             }}>
                 {props.children}

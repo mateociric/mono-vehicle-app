@@ -16,11 +16,11 @@ function CarCard(props: { carInfo: TCar }) {
     const [modalIsVisible, setModalIsVisible] = useState<boolean>(false);
     const cSV = useContext(ctxStoreValues);
     const navigateToUpdateCarCard = useNavigate();
-
+    console.log(cSV.val.isCarCardDeletedFromDatabase);
     function deleteCarHandler(isYesClicked: boolean) {
         if (isYesClicked) {
             deleteCarFromCarList(cSV.func.setCarList, cSV.val.carList, props.carInfo.id);
-            deleteCarFromDatabase(props.carInfo.id, setModalIsVisible);
+            deleteCarFromDatabase(props.carInfo.id, cSV.func.setIsCarCardDeletedFromDatabase);
             setModalIsVisible(false);
         } else {
             setModalIsVisible(false);
@@ -31,7 +31,7 @@ function CarCard(props: { carInfo: TCar }) {
         <>
             {modalIsVisible && <Modal
                 onClick={deleteCarHandler}
-                message={'Are you sure that you want delete this card?'}
+                message='Are you sure that you want delete this card?'
                 hasButtonNO={true} />}
             <div
                 onClick={() => navigateToUpdateCarCard(`/UpdateCarCard/${props.carInfo.id}`)}

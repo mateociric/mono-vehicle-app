@@ -46,7 +46,7 @@ function UpdateCarList() {
                         cSV.val.carBrandSelectVal,
                         cSV.func.setCarModelList,
                         cSV.func.setCarModelSelectVal)
-            }>Remove</button>
+            }>Delete</button>
             <button onClick={() => setIsCarBrandDisplyed(!isCarBrandDisplyed)}>Switch to {isCarBrandDisplyed ? 'model' : 'brand'}</button>
         </div >
     )

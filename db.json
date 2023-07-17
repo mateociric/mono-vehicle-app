@@ -1,22 +1,3 @@
 {
-  "carList": [
-    {
-      "carBrand": "BMW",
-      "carModel": "B2",
-      "carImage": "",
-      "id": 2
-    },
-    {
-      "carBrand": "BMW",
-      "carModel": "B2",
-      "carImage": "",
-      "id": 4
-    },
-    {
-      "carBrand": "Mercedes-Benz",
-      "carModel": "M1",
-      "carImage": "",
-      "id": 5
-    }
-  ]
+  "carList": []
 }
