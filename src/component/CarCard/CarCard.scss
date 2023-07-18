@@ -8,10 +8,6 @@
     position: relative;
     cursor: pointer;
 
-    &:hover .car-card__image {
-        transform: scale(1.025);
-    }
-
     &:hover .iconTrash {
         opacity: 1;
     }
@@ -25,27 +21,42 @@
         top: 1rem;
         left: 1rem;
         z-index: 1;
+        opacity: .75;
         background-color: $col-pure-black;
+
+        p {
+            font-family: $font-global;
+            font-size: $font-size-p;
+            color: $col-pure-white;
+        }
     }
 
     &__image {
-        width: 100%;
-        aspect-ratio: 2/1.25;
-        object-fit: cover;
-        transition: transform .35s;
-    }
-
-    & p {
-        font-family: $font-main;
-        font-size: $font-size-carcard-p;
-        color: $col-pure-white;
-        transition: color .5s;
-    }
-
-    & .car-card__details {
-        width: 100%;
         position: relative;
-        text-align: center;
+
+        & img {
+            width: 100%;
+            aspect-ratio: 2/1.25;
+            object-fit: cover;
+            transition: all;
+        }
+
+        & section {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            bottom: 0;
+            z-index: 1;
+            opacity: .75;
+            background-color: $col-pure-black;
+
+            & p {
+                font-family: $font-global;
+                font-size: $font-size-p;
+                color: $col-pure-white;
+            }
+        }
     }
 }
 
@@ -57,4 +68,9 @@
     opacity: 0;
     color: $col-pure-white;
     transition: opacity .5s;
+
+    :hover {
+        transform-origin: center;
+        scale: (1.25);
+    }
 }

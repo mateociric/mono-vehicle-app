@@ -1,23 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+//pure colors
 $col-pure-white: #FFF;
 $col-pure-black: #000;
+//background colors
+$background-color-header: #0C0603;
+$background-color-main: #212121;
+$background-color-aside: #0C0603;
+$background-color-a-hover: #f05b10;
+$background-color-overlay: #251e1e;
+//font-family
+$font-global: 'Bebas Neue', sans-serif;
+//font size
+$font-size-a: 3rem;
+$font-size-h1: 5rem;
+$font-size-p: 2rem;
+$font-size-label: 3rem;
+$font-size-inputSelectButton: 2rem;
+//font color
+$font-color-label: #f05b10;
+$font-color-h1: #f05b10;
+$col-help-p-help: #858585;
 
-$col-header: #212121;
-$col-main: #212121;
-$col-aside: #0C0603;
-$col-bg-a: #212121;
-$col-bg-a-hover: #0C0603;
 $col-glow-effect: #F2600F;
 $col-overlay-border: #5e5e5e;
-$col-overlay-bg: #251e1e;
-
-$font-main: 'Bebas Neue', sans-serif;
-$font-size-a: 3rem;
-$font-size-title: 5rem;
-$font-size-label: 3rem;
-$font-size-input-selct-button: 2rem;
-$font-size-carcard-p: 2.5rem;
-$font-size-modal-message: 3rem;
-
-$col-label: #ff7921;

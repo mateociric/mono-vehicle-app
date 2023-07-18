@@ -2,8 +2,8 @@ input,
 select,
 button {
     border: none;
-    font-family: $font-main;
-    font-size: $font-size-input-selct-button;
+    font-family: $font-global;
+    font-size: $font-size-inputSelectButton;
     line-height: 5rem;
     align-self: center;
     transition: box-shadow .25s;
@@ -20,6 +20,11 @@ select {
 
     &:focus {
         outline: none;
+    }
+
+    &:disabled {
+        background-color: $col-pure-white;
+        opacity: 1;
     }
 }
 
@@ -38,30 +43,7 @@ button {
 }
 
 label {
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
     font-size: $font-size-label;
-    color: $col-label;
-}
-
-article {
-    width: 75%;
-    margin-bottom: 4rem;
-    padding-left: 10rem;
-    font-family: $font-main;
-    font-weight:100;
-    display: block;
-    color: $col-glow-effect;
-
-    &:first-of-type {
-        margin-top: 4rem;
-    }
-
-    & p {
-        color: rgb(133, 133, 133);
-        font-size: 2rem;
-    }
-}
-
-h1 {
-    font-size: 3rem;
+    color: $font-color-label;
 }

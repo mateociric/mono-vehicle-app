@@ -1,3 +1,34 @@
 {
-  "carList": []
+  "carList": [
+    {
+      "carBrand": "Mercedes-Benz",
+      "carModel": "M1",
+      "carImage": "",
+      "id": 1
+    },
+    {
+      "carBrand": "BMW",
+      "carModel": "B2",
+      "carImage": "https://media.istockphoto.com/id/1150931120/photo/3d-illustration-of-generic-compact-white-car-front-side-view.jpg?b=1&s=612x612&w=0&k=20&c=ToS3pNwkL99nBZvLw4nt4ZMjPRIGPZV5xzza4pPdnkc=",
+      "id": 2
+    },
+    {
+      "carBrand": "Mercedes-Benz",
+      "carModel": "M1",
+      "carImage": "",
+      "id": 4
+    },
+    {
+      "carBrand": "Mercedes-Benz",
+      "carModel": "M2",
+      "carImage": "",
+      "id": 5
+    },
+    {
+      "carBrand": "BMW",
+      "carModel": "B2",
+      "carImage": "",
+      "id": 7
+    }
+  ]
 }

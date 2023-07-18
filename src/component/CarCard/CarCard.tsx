@@ -36,28 +36,32 @@ function CarCard(props: { carInfo: TCar }) {
             <div
                 onClick={() => navigateToUpdateCarCard(`/UpdateCarCard/${props.carInfo.id}`)}
                 className='car-card flex-column'>
+
                 <div className='car-card__id flex-row'>
                     <p>{props.carInfo.id}</p>
                 </div>
 
-                <img
-                    onError={() => setCarImageIsVisible(false)}
-                    src={carImageIsVisible ? props.carInfo.carImage : defaultImage}
-                    alt={`${props.carInfo.carBrand} ${props.carInfo.carModel}`}
-                    className='car-card__image' />
+                <div className='car-card__image'>
+                    <img
+                        onError={() => setCarImageIsVisible(false)}
+                        src={carImageIsVisible ? props.carInfo.carImage : defaultImage}
+                        alt={`${props.carInfo.carBrand} ${props.carInfo.carModel}`}
+                    />
 
-                <section className='car-card__details'>
-                    <p>{props.carInfo.carBrand}</p>
-                    <p>{props.carInfo.carModel}</p>
-                    <FontAwesomeIcon
-                        onClick={(event: React.MouseEvent) => {
-                            event.stopPropagation();
-                            setModalIsVisible(true);
-                        }}
-                        icon={faTrash}
-                        size='3x'
-                        className='iconTrash' />
-                </section>
+                    <section className='flex-column'>
+                        <p>{props.carInfo.carBrand}</p>
+                        <p>{props.carInfo.carModel}</p>
+                        <FontAwesomeIcon
+                            onClick={(event: React.MouseEvent) => {
+                                event.stopPropagation();
+                                setModalIsVisible(true);
+                            }}
+                            icon={faTrash}
+                            size='3x'
+                            className='iconTrash'
+                        />
+                    </section>
+                </div>
             </div>
         </>
     )

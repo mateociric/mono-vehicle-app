@@ -16,17 +16,17 @@
 .header {
     grid-area: header;
     width: 100%;
-    background-color: $col-main;
+    background-color: $background-color-header;
 }
 
 .aside {
     border-left: .1rem solid $col-pure-white;
     grid-area: aside;
     position: relative;
-    background-color: $col-aside;
+    background-color: $background-color-aside;
 }
 
 .main {
     grid-area: main;
-    background-color: $col-main;
+    background-color: $background-color-main;
 }

@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { useLocation } from "react-router";
 import 'component/Menu/Menu.scss'
+import InputSearch from './InputSearch/InputSearch';
 import SelectSort from './SelectSort/SelectSort';
 import SelectCarBrand from 'component/Menu/SelectCarBrand/SelectCarBrand';
 import SelectCarModel from 'component/Menu/SelectCarModel/SelectCarModel';
 import Modal from 'component/Modal/Modal';
 import ctxStoreValues from 'store/store-context';
-import { addCarToCarList, searchCar } from 'utility/menu-func';
+import { addCarToCarList } from 'utility/menu-func';
 
 function Menu() {
     const cSV = useContext(ctxStoreValues);
@@ -24,22 +25,24 @@ function Menu() {
                 message='Something went wrong. Car is not saved to database.'
                 hasButtonNO={false} />}
             <div className='menu flex-column'>
-                <section className='menu__title flex-column'>
-                    <p>MENU</p>
-                </section>
+                <h1 className='menu__title'>
+                    MENU
+                </h1>
 
                 <section className='menu__search flex-column'>
                     <label htmlFor='search-input' >search car</label>
-                    <input
-                        onKeyUp={(event: React.KeyboardEvent) => searchCar(event, cSV.func.setSearchCarInputVal)}
-                        id='search-input'
-                        type="text"
-                        placeholder='eneter car brand & car name' />
+                    <InputSearch
+                        setSearchCarInputVal={cSV.func.setSearchCarInputVal}
+                        currLocation={currLocation.pathname}
+                    />
                 </section>
 
                 <section className='menu__sort flex-column'>
                     <label htmlFor='sort-select'>sort car</label>
-                    <SelectSort setTypeOfSort={cSV.func.setTypeOfSort} />
+                    <SelectSort
+                        setTypeOfSort={cSV.func.setTypeOfSort}
+                        currLocation={currLocation.pathname}
+                    />
                 </section>
 
                 <section className='menu__add flex-column'>
@@ -48,12 +51,16 @@ function Menu() {
                     <SelectCarBrand
                         value={cSV.val.carBrandSelectVal}
                         updatedOptionList={cSV.val.carBrandList}
-                        setCarBrandSelectVal={cSV.func.setCarBrandSelectVal} />
+                        setCarBrandSelectVal={cSV.func.setCarBrandSelectVal}
+                        currLocation={currLocation.pathname}
+                    />
 
                     <SelectCarModel
                         value={cSV.val.carModelSelectVal}
                         updatedOptionList={cSV.val.carModelList[cSV.val.carBrandSelectVal]}
-                        setCarModelSelectVal={cSV.func.setCarModelSelectVal} />
+                        setCarModelSelectVal={cSV.func.setCarModelSelectVal}
+                        currLocation={currLocation.pathname}
+                    />
 
                     <button onClick={() => addCarToCarList(
                         cSV.val.carBrandList,

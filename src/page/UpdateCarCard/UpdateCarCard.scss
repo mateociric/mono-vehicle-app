@@ -3,13 +3,13 @@
 .update-car-card {
     width: 100%;
     margin-top: 12.5rem;
-    font-family: $font-main;
+    font-family: $font-global;
     text-align: center;
 
     & label {
-        font-family: $font-main;
+        font-family: $font-global;
         font-size: $font-size-label;
-        color: $col-label;
+        color: $font-color-label;
     }
 
     & input {

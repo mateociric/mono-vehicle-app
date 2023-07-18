@@ -9,20 +9,20 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 3;
-    color: $col-label;
+    color: $font-color-label;
     text-align: center;
-    background-color: $col-overlay-bg;
+    background-color: $background-color-overlay;
 
     &__message {
-        margin-top: 1rem;
-        font-family: $font-main;
-        font-size: $font-size-modal-message;
+        margin-top: 2rem;
+        font-family: $font-global;
+        font-size: $font-size-p;
         color: $col-pure-white;
     }
 
     &__button {
         width: 100%;
-        margin: 4rem 0 2rem;
+        margin: 2rem 0 2rem;
     }
 
     button {

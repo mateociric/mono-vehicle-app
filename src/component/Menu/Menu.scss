@@ -6,7 +6,7 @@
     position: sticky;
     top: 0;
     right: 0;
-    font-family: $font-main;
+    font-family: $font-global;
     text-align: center;
 
     &__title,
@@ -16,10 +16,15 @@
         width: 100%;
     }
 
-    &__title p {
-        font-size: $font-size-title;
+    &__title {
         padding: 3.5rem;
+        font-size: $font-size-h1;
+        font-weight: 100;
         color: $col-pure-white;
+    }
+
+    & label {
+        margin-top: 1rem;
     }
 
     & input,
@@ -27,18 +32,12 @@
         width: 75%;
     }
 
-    & select {
-        &:first-of-type {
-            margin-bottom: 1rem;
-        }
-
-        &:last-of-type {
-            margin-bottom: 2rem;
-        }
+    &__add select:last-of-type {
+        margin-top: 1rem;
     }
 
     & button {
-        margin-top: 3rem;
+        margin-top: 5rem;
         width: 35%;
     }
 }

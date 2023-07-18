@@ -1,7 +1,7 @@
 import axios from "axios";
 import { TCar } from "model/model-car";
 
-const url = 'http://localhost:400/carList';
+const url = 'http://localhost:4000/carList';
 
 export async function addCarToDatabase(newCar: TCar, setModalIsVisibleForDatabaseError: Function) {
     await axios.post(url, newCar).catch(() => setModalIsVisibleForDatabaseError(true));

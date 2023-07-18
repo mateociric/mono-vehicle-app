@@ -1,4 +1,7 @@
+import 'page/Help/Help.scss';
+
 function Help() {
+
     return (
         <>
             <article>
