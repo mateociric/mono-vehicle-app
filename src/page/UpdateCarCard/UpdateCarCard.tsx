@@ -55,7 +55,10 @@ function UpdateCarCard() {
                     type="text"
                     defaultValue={carToBeUpadted.length ? carToBeUpadted[0].carImage : ''}
                     placeholder='enter url of car image' />
-                <button onClick={() => setModalIsVisible(true)}>Submit car update</button>
+                <button
+                    onClick={() => setModalIsVisible(true)}
+                    className='reduce-font-size'
+                >Submit update</button>
             </div>
         </>
     );

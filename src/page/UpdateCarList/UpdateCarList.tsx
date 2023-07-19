@@ -7,7 +7,7 @@ function UpdateCarList() {
     const cSV = useContext(ctxStoreValues);
     const [isCarBrandDisplyed, setIsCarBrandDisplyed] = useState<boolean>(true);
     const [inputValue, setInputValue] = useState<string>('');
-    
+
     return (
         <div className='update-car-list flex-column'>
             <label htmlFor='inputBrandModel'>{isCarBrandDisplyed ? 'Car brand' : 'Car model'}</label>
@@ -47,7 +47,12 @@ function UpdateCarList() {
                         cSV.func.setCarModelList,
                         cSV.func.setCarModelSelectVal)
             }>Delete</button>
-            <button onClick={() => setIsCarBrandDisplyed(!isCarBrandDisplyed)}>Switch to {isCarBrandDisplyed ? 'model' : 'brand'}</button>
+            <button
+                onClick={() => setIsCarBrandDisplyed(!isCarBrandDisplyed)}
+                className='reduce-font-size'
+            >
+                Switch to {isCarBrandDisplyed ? 'model' : 'brand'}
+            </button>
         </div >
     )
 }

@@ -17,4 +17,8 @@ article {
         font-size: $font-size-p;
         color: $col-help-p-help;
     }
+
+    &:last-of-type {
+        margin-bottom: 4rem;
+    }
 }

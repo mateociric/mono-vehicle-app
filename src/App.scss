@@ -6,7 +6,6 @@
     grid-template-columns: 1.5fr 0.5fr;
     grid-template-rows: 0.2fr 1.8fr;
     grid-auto-columns: 1fr;
-    gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
         "header aside"
@@ -14,12 +13,13 @@
 }
 
 .header {
+    min-width: 40rem;
     grid-area: header;
-    width: 100%;
     background-color: $background-color-header;
 }
 
 .aside {
+    min-width: 30rem;
     border-left: .1rem solid $col-pure-white;
     grid-area: aside;
     position: relative;
@@ -27,6 +27,7 @@
 }
 
 .main {
+    min-width: 60rem;
     grid-area: main;
     background-color: $background-color-main;
 }

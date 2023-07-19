@@ -20,7 +20,20 @@
         &.active {
             padding: 3.5rem 0 3.5rem;
             background-color: $background-color-a-hover;
+
+            @media (max-width: 40rem) {
+                width: 100%;
+                padding: 0;
+            }
         }
 
+        @media (max-width: 40rem) {
+            padding: 0;
+        }
+    }
+
+    @media (max-width: 40rem) {
+        display: flex;
+        flex-direction: column;
     }
 }

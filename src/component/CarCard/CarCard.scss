@@ -18,8 +18,9 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 1rem;
-        left: 1rem;
+        top: 2%;
+        //1.25 due to aspect-ratio: 2/1.25;
+        left: 1.25%;
         z-index: 1;
         opacity: .75;
         background-color: $col-pure-black;
@@ -38,7 +39,6 @@
             width: 100%;
             aspect-ratio: 2/1.25;
             object-fit: cover;
-            transition: all;
         }
 
         & section {
@@ -57,6 +57,11 @@
                 color: $col-pure-white;
             }
         }
+    }
+
+    @media (max-width: 40rem) {
+        margin: 0 auto;
+        width: 75%;
     }
 }
 
