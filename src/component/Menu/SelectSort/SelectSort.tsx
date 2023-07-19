@@ -1,4 +1,4 @@
-function SelectSort(props: { setTypeOfSort: Function, currLocation: string}) {
+function SelectSort(props: { setTypeOfSort: Function, currLocation: string }) {
 
     return (
         <select
@@ -8,7 +8,7 @@ function SelectSort(props: { setTypeOfSort: Function, currLocation: string}) {
             <option value="id">sort by ID</option>
             <option value="carBrand">sort by BRAND</option>
             <option value="carModel">sort by MODEL</option>
-        </select >
+        </select>
     )
 }
 

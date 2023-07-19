@@ -27,17 +27,19 @@ function Homepage() {
         });
     }
 
-    function onClickHandler() {
+    function onCloseModalHandler() {
         setModalIsVisibleForDatabaseError(false);
-        cSV.func.setIsCarCardDeletedFromDatabase(false);
+        cSV.func.setIsCarCardFailedToDeleteFromDatabase(false);
     }
 
     return (
         <>
-            {(modalIsVisibleForDatabaseError || cSV.val.isCarCardDeletedFromDatabase) && <Modal
-                onClick={onClickHandler}
-                message={cSV.val.isCarCardDeletedFromDatabase ? 'Something went wrong. Car is not deleted from database.' : 'Something went wrong. Car list can not be loaded from database.'}
-                hasButtonNO={false} />}
+            {(modalIsVisibleForDatabaseError || cSV.val.isCarCardFailedToDeleteFromDatabase) &&
+                <Modal
+                    onClick={onCloseModalHandler}
+                    message={cSV.val.isCarCardFailedToDeleteFromDatabase ? 'Something went wrong. The car is not deleted from the database.' : 'Something went wrong. The car list can not be loaded from the database.'}
+                    hasButtonNO={false}
+                />}
             <div className="grid">
                 {displayedCarList()}
             </div>

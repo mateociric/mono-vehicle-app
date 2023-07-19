@@ -5,14 +5,14 @@ import { TCar } from 'model/model-car';
 const ctxValues: TCtxValues = {
     val: {
         carBrandList: ['Mercedes-Benz', 'BMW'],
-        carModelList: [['M1', 'M2'], ['B1', 'B2']],
+        carModelList: [['S Class'], ['X1']],
         carBrandSelectVal: 0,
         carModelSelectVal: 0,
         carList: [],
         typeOfSort: 'id',
         searchCarInputVal: '',
         appIsRunFirstTime: true,
-        isCarCardDeletedFromDatabase: false,
+        isCarCardFailedToDeleteFromDatabase: false,
     },
     func: {
         setCarBrandList: () => { },
@@ -23,7 +23,7 @@ const ctxValues: TCtxValues = {
         setSearchCarInputVal: () => { },
         setCarList: () => { },
         setAppIsRunFirstTime: () => { },
-        setIsCarCardDeletedFromDatabase: () => { },
+        setIsCarCardFailedToDeleteFromDatabase: () => { },
     },
 }
 
@@ -31,14 +31,14 @@ const ctxStoreValues = React.createContext(ctxValues);
 
 export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
     const [carBrandList, setCarBrandList] = useState<string[]>(['Mercedes-Benz', 'BMW']);
-    const [carModelList, setCarModelList] = useState<string[][]>([['M1', 'M2'], ['B1', 'B2']]);
+    const [carModelList, setCarModelList] = useState<string[][]>([['S Class'], ['X1']]);
     const [carBrandSelectVal, setCarBrandSelectVal] = useState<number>(0);
     const [carModelSelectVal, setCarModelSelectVal] = useState<number>(0);
     const [carList, setCarList] = useState<TCar[]>([]);
     const [typeOfSort, setTypeOfSort] = useState<string>('id');
     const [searchCarInputVal, setSearchCarInputVal] = useState<string>('');
     const [appIsRunFirstTime, setAppIsRunFirstTime] = useState<boolean>(true);
-    const [isCarCardDeletedFromDatabase, setIsCarCardDeletedFromDatabase] = useState<boolean>(false);
+    const [isCarCardFailedToDeleteFromDatabase, setIsCarCardFailedToDeleteFromDatabase] = useState<boolean>(false);
 
     return (
         <>
@@ -52,7 +52,7 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                     typeOfSort,
                     searchCarInputVal,
                     appIsRunFirstTime,
-                    isCarCardDeletedFromDatabase,
+                    isCarCardFailedToDeleteFromDatabase,
                 },
                 func: {
                     setCarBrandList,
@@ -63,7 +63,7 @@ export function CtxStoreValuesProvider(props: { children: React.ReactNode }) {
                     setSearchCarInputVal,
                     setCarList,
                     setAppIsRunFirstTime,
-                    setIsCarCardDeletedFromDatabase,
+                    setIsCarCardFailedToDeleteFromDatabase,
                 }
             }}>
                 {props.children}

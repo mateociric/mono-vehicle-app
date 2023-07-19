@@ -31,7 +31,7 @@ function Help() {
             <article>
                 <h1>Update car list & model</h1>
                 <p>
-                    In the Update car list, you can update the car brand list for the new items as well as the car model list. But, before you will click Add or Delete button you must provide a name to tell the application which brand or model you want to add or delete.
+                In the Update car list, you can update the car brand list for the new items as well as the car model list. But, before you will click Add or Delete button you must provide a name to tell the application which brand or model you want to add or delete. A name must start with a letter and contains a maximum of 20 characters. Two brands or models with the same name can not be updated.
                 </p>
             </article>
             <article>

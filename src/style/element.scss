@@ -9,7 +9,7 @@ button {
     transition: box-shadow .25s;
 
     &:hover {
-        box-shadow: 0 0 .5rem .1rem $col-glow-effect, 0 0 1.5rem .25rem $col-glow-effect;
+        box-shadow: 0 0 .5rem .1rem $glow-effect, 0 0 1.5rem .25rem $glow-effect;
     }
 }
 
@@ -39,6 +39,11 @@ button {
     &:active {
         transform: scale(.925);
         box-shadow: unset;
+    }
+
+    &:disabled {
+        background-color: $col-pure-white;
+        color: $col-pure-black;
     }
 }
 

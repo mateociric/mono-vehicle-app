@@ -1,3 +1,7 @@
+export function checkInputValue(val: string): boolean {
+    return !!(val.match(/^[a-zA-Z][a-zA-Z0-9]{0,19}$/i));
+}
+
 export function addCarBrand(
     inputValue: string,
     carBrandList: string[],

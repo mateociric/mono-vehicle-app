@@ -14,15 +14,15 @@ function Menu() {
     const [modalIsVisibleForDatabaseError, setModalIsVisibleForDatabaseError] = useState<boolean>(false);
     const currLocation = useLocation();
 
-    function onClickHandler() {
+    function onCloseModalHandler() {
         setModalIsVisibleForDatabaseError(false);
     }
 
     return (
         <>
             {modalIsVisibleForDatabaseError && <Modal
-                onClick={onClickHandler}
-                message='Something went wrong. Car is not saved to database.'
+                onClick={onCloseModalHandler}
+                message='Something went wrong. The car is not saved to a database.'
                 hasButtonNO={false} />}
             <div className='menu flex-column'>
                 <h1 className='menu__title'>
@@ -70,7 +70,8 @@ function Menu() {
                         cSV.val.carList,
                         cSV.func.setCarList,
                         setModalIsVisibleForDatabaseError)}
-                        className={currLocation.pathname === '/' ? '' : 'buttonIsHidden'}>Create car</button>
+                        className={currLocation.pathname === '/' ? '' : 'buttonIsHidden'}
+                    >Create car</button>
                 </section>
             </div >
         </>

@@ -8,7 +8,7 @@ function Overlay(props: { onClick: Function, message: string, hasButtonNO: boole
             <p className='overlay__message'>{props.message}</p>
             <section className='overlay__button'>
                 <button onClick={() => props.onClick(true)}>Yes</button>
-                {props.hasButtonNO ? <button onClick={() => props.onClick(false)}>No</button> : null}
+                {props.hasButtonNO && <button onClick={() => props.onClick(false)}>No</button>}
             </section>
         </div>
     )

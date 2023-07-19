@@ -1,7 +1,8 @@
 import { useContext, useState } from 'react';
 import 'page/UpdateCarList/UpdateCarList.scss';
+import Modal from 'component/Modal/Modal';
 import ctxStoreValues from 'store/store-context';
-import { addCarBrand, deleteCarBrand, addCarModel, deleteCarModel } from 'utility/update-car-list-func';
+import { checkInputValue, addCarBrand, deleteCarBrand, addCarModel, deleteCarModel } from 'utility/update-car-list-func';
 
 function UpdateCarList() {
     const cSV = useContext(ctxStoreValues);
@@ -30,7 +31,8 @@ function UpdateCarList() {
                     cSV.val.carBrandSelectVal,
                     cSV.func.setCarModelList,
                     cSV.func.setCarModelSelectVal)
-            }>Add</button>
+            } disabled={!checkInputValue(inputValue)}
+            >Add</button>
             <button onClick={() =>
                 isCarBrandDisplyed ?
                     deleteCarBrand(
@@ -53,7 +55,7 @@ function UpdateCarList() {
             >
                 Switch to {isCarBrandDisplyed ? 'model' : 'brand'}
             </button>
-        </div >
+        </div>
     )
 }
 

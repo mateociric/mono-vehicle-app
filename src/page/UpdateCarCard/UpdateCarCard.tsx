@@ -31,7 +31,7 @@ function UpdateCarCard() {
         setModalIsVisible(false)
     }
 
-    function onClickHandler() {
+    function onCloseModalHandler() {
         setModalIsVisibleForDatabaseError(false)
     }
 
@@ -40,11 +40,13 @@ function UpdateCarCard() {
             {modalIsVisible && <Modal
                 onClick={updateCarCardHandler}
                 message={`Car card updated to ${carBrand} - ${carModel}`}
-                hasButtonNO={false} />}
+                hasButtonNO={false}
+            />}
             {modalIsVisibleForDatabaseError && <Modal
-                onClick={onClickHandler}
+                onClick={onCloseModalHandler}
                 message='Something went wrong. Car is not updated to database.'
-                hasButtonNO={false} />}
+                hasButtonNO={false}
+            />}
             <div className='update-car-card flex-column'>
                 <label htmlFor='carImage'>{carToBeUpadted.length ?
                     `${carToBeUpadted[0].carBrand} - ${carToBeUpadted[0].carModel}` :
@@ -54,7 +56,8 @@ function UpdateCarCard() {
                     id='carImage'
                     type="text"
                     defaultValue={carToBeUpadted.length ? carToBeUpadted[0].carImage : ''}
-                    placeholder='enter url of car image' />
+                    placeholder='enter url of car image'
+                />
                 <button
                     onClick={() => setModalIsVisible(true)}
                     className='reduce-font-size'

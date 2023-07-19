@@ -10,7 +10,7 @@ type TCtxValues = {
         typeOfSort: string,
         searchCarInputVal: string,
         appIsRunFirstTime: boolean,
-        isCarCardDeletedFromDatabase: boolean,
+        isCarCardFailedToDeleteFromDatabase: boolean,
     },
     func: {
         setCarBrandList: Function,
@@ -21,7 +21,7 @@ type TCtxValues = {
         setSearchCarInputVal: Function,
         setCarList: Function,
         setAppIsRunFirstTime: Function,
-        setIsCarCardDeletedFromDatabase: Function,
+        setIsCarCardFailedToDeleteFromDatabase: Function,
     },
 }
 
