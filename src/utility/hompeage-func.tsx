@@ -20,7 +20,7 @@ export function searchCarCard(carListSorted: TCar[], searchCarInputVal: string) 
     const carListFiltered = carListSorted.map((el: TCar) => {
         return el;
     }).filter((el: TCar) => {
-        return (el.carBrand.toLowerCase() + el.carModel.toLowerCase()).startsWith(searchCarInputVal.toLowerCase());
+        return (`${el.carBrand} ${el.carModel}`).toLowerCase().startsWith(searchCarInputVal.toLowerCase());
     });
 
     return carListFiltered;

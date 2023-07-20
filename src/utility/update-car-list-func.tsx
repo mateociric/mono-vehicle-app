@@ -1,5 +1,5 @@
 export function checkInputValue(val: string): boolean {
-    return !!(val.match(/^[a-zA-Z][a-zA-Z0-9]{0,19}$/i));
+    return !!(val.match(/^(?=[A-Za-z])(?!.*\s{2})[A-Za-z0-9\s-]{1,30}$/i));
 }
 
 export function addCarBrand(
@@ -15,7 +15,7 @@ export function addCarBrand(
         setCarBrandList((prevState: string[]) => {
             return [...prevState, inputValue]
         });
-        //when new car brand created update <option> for new car model
+        //when the car brand list is updated, update the car model list for []
         setCarModelList((prevState: string[]) => {
             return [...prevState, []]
         });
@@ -31,16 +31,22 @@ export function deleteCarBrand(
     setCarBrandList: Function,
     setCarBrandSelectVal: Function) {
     if (carBrandList.length > 1) {
-        const removedCarBrend = carBrandList.filter((el) => {
+        console.log(carBrandList, setCarModelList);
+        const newCarBrandList = carBrandList.filter((el) => {
             return el.toLowerCase() !== inputValue.toLowerCase();
         });
-        const indexToBeRemovedCarModel = carBrandList.indexOf(inputValue);
-        const removedCarModel = carModelList.filter((el, index) => {
-            return index !== indexToBeRemovedCarModel
-        });
-        setCarModelList(removedCarModel);
-        setCarBrandList(removedCarBrend);
-        setCarBrandSelectVal(0);
+        if (newCarBrandList.length !== carBrandList.length) {
+            // when the car brand is deleted belonging model list also must be deleted
+            const indexOfDeletedCarBrandItem = carBrandList.map((el) => {
+                return el.toLowerCase();
+            }).indexOf(inputValue.toLowerCase());
+            const newCarModelList = carModelList.filter((el, index) => {
+                return index !== indexOfDeletedCarBrandItem
+            });
+            setCarModelList(newCarModelList);
+            setCarBrandList(newCarBrandList);
+            setCarBrandSelectVal(newCarBrandList.length - 1);
+        }
     }
 }
 
@@ -50,15 +56,16 @@ export function addCarModel(
     carBrandSelectVal: number,
     setCarModelList: Function,
     setCarModelSelectVal: Function) {
+    console.log(carModelList);
     const carModelIsAlreadyExist = carModelList[carBrandSelectVal].some((el) => {
         return el.toLowerCase() === inputValue.toLowerCase();
     });
     if (!carModelIsAlreadyExist) {
-        //!!!always to make copy of array, not refernce (newCarModelLis = carModelList)
+        //!!!always to make a copy of an array, not reference (newCarModelLis = carModelList)
         const newCarModelList = carModelList.map((el) => { return el });
         newCarModelList[carBrandSelectVal] = [...newCarModelList[carBrandSelectVal], inputValue];
         setCarModelList(newCarModelList);
-        setCarModelSelectVal(carModelList[carBrandSelectVal].length);
+        setCarModelSelectVal(newCarModelList[carBrandSelectVal].length - 1);
     }
 }
 
@@ -68,11 +75,15 @@ export function deleteCarModel(
     carBrandSelectVal: number,
     setCarModelList: Function,
     setCarModelSelectVal: Function) {
-    const removedCarModel = carModelList[carBrandSelectVal].filter((el) => {
+    console.log(carModelList);
+    //first update a single carModelList then assign carModel 2D ArrayList
+    const newSingleCarModelList = carModelList[carBrandSelectVal].filter((el) => {
         return el.toLowerCase() !== inputValue.toLowerCase();
     });
-    const newCarModelLsit = carModelList.map((el) => { return el });
-    newCarModelLsit[carBrandSelectVal] = removedCarModel;
-    setCarModelList(newCarModelLsit);
-    setCarModelSelectVal(0);
+    if (newSingleCarModelList.length !== carModelList[carBrandSelectVal].length) {
+        const newCarModelList = carModelList.map((el) => { return el });
+        newCarModelList[carBrandSelectVal] = newSingleCarModelList;
+        setCarModelList(newCarModelList);
+        setCarModelSelectVal(carModelList[carBrandSelectVal].length - 1);
+    }
 }

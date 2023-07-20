@@ -52,6 +52,7 @@ function Menu() {
                         value={cSV.val.carBrandSelectVal}
                         updatedOptionList={cSV.val.carBrandList}
                         setCarBrandSelectVal={cSV.func.setCarBrandSelectVal}
+                        setCarModelSelectVal={cSV.func.setCarModelSelectVal}
                         currLocation={currLocation.pathname}
                     />
 

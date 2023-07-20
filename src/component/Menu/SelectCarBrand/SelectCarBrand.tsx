@@ -1,8 +1,16 @@
-function SelectCarBrand(props: { value: number, updatedOptionList: string[], setCarBrandSelectVal: Function, currLocation: string }) {
+function SelectCarBrand(props: { 
+    value: number,
+    updatedOptionList: string[],
+    setCarBrandSelectVal: Function,
+    setCarModelSelectVal: Function,
+    currLocation: string }) {
 
     return (
         <select
-            onChange={(event: React.ChangeEvent) => { props.setCarBrandSelectVal((event.target as HTMLSelectElement).value) }}
+            onChange={(event: React.ChangeEvent) => {
+                props.setCarBrandSelectVal((event.target as HTMLSelectElement).value);
+                props.setCarModelSelectVal(0);
+            }}
             id='car-brand-select'
             value={props.value}
             disabled={props.currLocation !== '/Help' ? false : true}>

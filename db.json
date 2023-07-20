@@ -1,3 +1,16 @@
 {
-  "carList": []
+  "carList": [
+    {
+      "carBrand": "Mercedes-Benz",
+      "carModel": "S Class",
+      "carImage": "",
+      "id": 1
+    },
+    {
+      "carBrand": "BMW",
+      "carModel": "X1",
+      "carImage": "",
+      "id": 2
+    }
+  ]
 }

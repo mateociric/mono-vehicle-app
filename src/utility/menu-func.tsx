@@ -9,20 +9,20 @@ export function addCarToCarList(
     carList: TCar[],
     setCarList: Function,
     setModalIsVisibleForDatabaseError: Function) {
-    const newCar: TCar = {
-        carBrand: carBrandList[carBrandSelectedVal],
-        carModel: carModelList[carBrandSelectedVal][carModelSelectVal],
-        carImage: '',
-        id: !carList.length ? 1 : carList[carList.length - 1].id + 1,
+    if (carModelList[carBrandSelectedVal].length) {
+        const newCar: TCar = {
+            carBrand: carBrandList[carBrandSelectedVal],
+            carModel: carModelList[carBrandSelectedVal][carModelSelectVal],
+            carImage: '',
+            id: !carList.length ? 1 : carList[carList.length - 1].id + 1,
+        }
+        setCarList((prevState: TCar[]) => {
+            return [...prevState, newCar];
+        });
+        addCarToDatabase(newCar, setModalIsVisibleForDatabaseError);
     }
-    setCarList((prevState: TCar[]) => {
-        return [...prevState, newCar];
-    });
-    addCarToDatabase(newCar, setModalIsVisibleForDatabaseError);
 }
 
 export function searchCar(event: React.KeyboardEvent, setSearchCarInputVal: Function) {
-    //removing white spaces
-    (event.target as HTMLInputElement).value = (event.target as HTMLInputElement).value.replace(/^[ \t]+|[ \t]+$/gm, "");
     setSearchCarInputVal((event.target as HTMLInputElement).value);
 }

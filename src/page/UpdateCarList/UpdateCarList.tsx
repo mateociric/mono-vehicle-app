@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import 'page/UpdateCarList/UpdateCarList.scss';
-import Modal from 'component/Modal/Modal';
 import ctxStoreValues from 'store/store-context';
 import { checkInputValue, addCarBrand, deleteCarBrand, addCarModel, deleteCarModel } from 'utility/update-car-list-func';
 
