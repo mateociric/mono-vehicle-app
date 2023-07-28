@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import 'component/CarCard/CarCard.scss';
 import Modal from 'component/Modal/Modal';
 import ctxStoreValues from 'store/store-context';
-import { TCar } from 'model/model-car';
+import TCar from 'model/model-car';
 import { deleteCarFromCarList } from 'utility/car-card-func';
 import { deleteCarFromDatabase } from 'utility/databse-func';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

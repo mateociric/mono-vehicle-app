@@ -3,7 +3,7 @@ import 'page/Homepage/Homepage.scss';
 import CarCard from 'component/CarCard/CarCard';
 import Modal from 'component/Modal/Modal';
 import ctxStoreValues from 'store/store-context';
-import Car from 'model/model-car';
+import Car from 'utility/car-class';
 import { searchCarCard, sortCarCard } from 'utility/hompeage-func';
 import { getCarListFromDatabase } from 'utility/databse-func';
 

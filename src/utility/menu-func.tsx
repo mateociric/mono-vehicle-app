@@ -1,4 +1,4 @@
-import { TCar } from "model/model-car"
+import TCar from "model/model-car"
 import { addCarToDatabase } from "./databse-func";
 
 export function addCarToCarList(

@@ -1,27 +1,27 @@
 import React, { useState } from 'react'
 import TCtxValues from 'model/model-ctx-store';
-import { TCar } from 'model/model-car';
+import TCar from 'model/model-car';
 
 const ctxValues: TCtxValues = {
     val: {
-        carBrandList: ['Mercedes-Benz', 'BMW'],
-        carModelList: [['S Class'], ['X1']],
-        carBrandSelectVal: 0,
-        carModelSelectVal: 0,
-        carList: [],
+        carBrandList: ['Mercedes-Benz', 'BMW'], //
+        carModelList: [['S Class'], ['X1']],//
+        carBrandSelectVal: 0,//
+        carModelSelectVal: 0,//
+        carList: [], //
         typeOfSort: 'id',
         searchCarInputVal: '',
         appIsRunFirstTime: true,
         isCarCardFailedToDeleteFromDatabase: false,
     },
     func: {
-        setCarBrandList: () => { },
+        setCarBrandList: () => { }, //
         setCarModelList: () => { },
-        setCarBrandSelectVal: () => { },
+        setCarBrandSelectVal: () => { }, //
         setCarModelSelectVal: () => { },
         setTypeOfSort: () => { },
         setSearchCarInputVal: () => { },
-        setCarList: () => { },
+        setCarList: () => { }, //
         setAppIsRunFirstTime: () => { },
         setIsCarCardFailedToDeleteFromDatabase: () => { },
     },

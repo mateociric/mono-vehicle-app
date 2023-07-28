@@ -1,4 +1,4 @@
-import { TCar } from "model/model-car";
+import TCar from "model/model-car";
 import { updateCarToDatabase } from "./databse-func";
 
 export function updateCar(

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TCar } from "model/model-car";
+import TCar from "model/model-car";
 
 const url = 'http://localhost:4000/carList';
 

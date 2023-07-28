@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import 'page/UpdateCarCard/UpdateCarCard.scss';
 import Modal from 'component/Modal/Modal';
 import ctxStoreValues from 'store/store-context';
-import { TCar } from 'model/model-car';
+import TCar from 'model/model-car';
 import { updateCar } from 'utility/update-car-func';
 
 function UpdateCarCard() {

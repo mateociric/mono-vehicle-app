@@ -1,4 +1,4 @@
-import { TCar } from "./model-car";
+import TCar from "./model-car";
 
 type TCtxValues = {
     val: {
