@@ -1,5 +1,4 @@
 import TCar from "model/model-car";
-import { updateCarToDatabase } from "./databse-func";
 
 export function updateCar(
     carBrandList: string[],
@@ -24,5 +23,4 @@ export function updateCar(
         return el;
     });
     setCarList(updatedArr);
-    updateCarToDatabase(id, updatedCar, setModalIsVisibleForDatabaseError);
 }

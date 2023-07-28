@@ -6,11 +6,11 @@ import SelectSort from './SelectSort/SelectSort';
 import SelectCarBrand from 'component/Menu/SelectCarBrand/SelectCarBrand';
 import SelectCarModel from 'component/Menu/SelectCarModel/SelectCarModel';
 import Modal from 'component/Modal/Modal';
-import ctxStoreValues from 'store/store-context';
-import { addCarToCarList } from 'utility/menu-func';
+import { contextStore } from 'store/store-context';
+import { observer } from 'mobx-react';
 
 function Menu() {
-    const cSV = useContext(ctxStoreValues);
+    const mainStore = useContext(contextStore);
     const [modalIsVisibleForDatabaseError, setModalIsVisibleForDatabaseError] = useState<boolean>(false);
     const currLocation = useLocation();
 
@@ -32,7 +32,7 @@ function Menu() {
                 <section className='menu__search flex-column'>
                     <label htmlFor='search-input' >search car</label>
                     <InputSearch
-                        setSearchCarInputVal={cSV.func.setSearchCarInputVal}
+                        setSearchCarInputVal={mainStore.setSearchCarInputVal}
                         currLocation={currLocation.pathname}
                     />
                 </section>
@@ -40,7 +40,7 @@ function Menu() {
                 <section className='menu__sort flex-column'>
                     <label htmlFor='sort-select'>sort car</label>
                     <SelectSort
-                        setTypeOfSort={cSV.func.setTypeOfSort}
+                        setTypeOfSort={mainStore.setTypeOfSort}
                         currLocation={currLocation.pathname}
                     />
                 </section>
@@ -49,28 +49,21 @@ function Menu() {
                     <label htmlFor='car-brand-select'>Car</label>
 
                     <SelectCarBrand
-                        value={cSV.val.carBrandSelectVal}
-                        updatedOptionList={cSV.val.carBrandList}
-                        setCarBrandSelectVal={cSV.func.setCarBrandSelectVal}
-                        setCarModelSelectVal={cSV.func.setCarModelSelectVal}
+                        value={mainStore.carBrandSelectVal}
+                        updatedOptionList={mainStore.carBrandList}
+                        setCarBrandSelectVal={mainStore.setCarBrandSelectVal}
+                        setCarModelSelectVal={mainStore.setCarModelSelectVal}
                         currLocation={currLocation.pathname}
                     />
 
                     <SelectCarModel
-                        value={cSV.val.carModelSelectVal}
-                        updatedOptionList={cSV.val.carModelList[cSV.val.carBrandSelectVal]}
-                        setCarModelSelectVal={cSV.func.setCarModelSelectVal}
+                        value={mainStore.carModelSelectVal}
+                        updatedOptionList={mainStore.carModelList[mainStore.carBrandSelectVal]}
+                        setCarModelSelectVal={mainStore.setCarModelSelectVal}
                         currLocation={currLocation.pathname}
                     />
 
-                    <button onClick={() => addCarToCarList(
-                        cSV.val.carBrandList,
-                        cSV.val.carBrandSelectVal,
-                        cSV.val.carModelList,
-                        cSV.val.carModelSelectVal,
-                        cSV.val.carList,
-                        cSV.func.setCarList,
-                        setModalIsVisibleForDatabaseError)}
+                    <button onClick={() => mainStore.addCarToCarList(setModalIsVisibleForDatabaseError)}
                         className={currLocation.pathname === '/' ? '' : 'buttonIsHidden'}
                     >Create car</button>
                 </section>
@@ -79,4 +72,4 @@ function Menu() {
     )
 }
 
-export default Menu;
+export default observer(Menu);

@@ -1,5 +1,4 @@
 import TCar from "model/model-car"
-import { addCarToDatabase } from "./databse-func";
 
 export function addCarToCarList(
     carBrandList: string[],
@@ -19,7 +18,6 @@ export function addCarToCarList(
         setCarList((prevState: TCar[]) => {
             return [...prevState, newCar];
         });
-        addCarToDatabase(newCar, setModalIsVisibleForDatabaseError);
     }
 }
 

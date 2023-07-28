@@ -2,32 +2,24 @@ import React, { useContext, useState } from 'react'
 import { useParams } from "react-router";
 import 'page/UpdateCarCard/UpdateCarCard.scss';
 import Modal from 'component/Modal/Modal';
-import ctxStoreValues from 'store/store-context';
+import { contextStore } from 'store/store-context';
 import TCar from 'model/model-car';
-import { updateCar } from 'utility/update-car-func';
+import { observer } from 'mobx-react';
 
 function UpdateCarCard() {
-    const cSV = useContext(ctxStoreValues);
+    const mainStore = useContext(contextStore);
     const [carImageInputVal, setCarImageInputVal] = useState<string>('')
     const [modalIsVisible, setModalIsVisible] = useState<boolean>(false);
     const [modalIsVisibleForDatabaseError, setModalIsVisibleForDatabaseError] = useState<boolean>(false);
     const { id } = useParams();
-    const carToBeUpadted = cSV.val.carList.filter((el: TCar) => {
+    const carToBeUpadted = mainStore.carList.filter((el: TCar) => {
         return el.id === Number(id);
     });
-    const carBrand = cSV.val.carBrandList[cSV.val.carBrandSelectVal];
-    const carModel = cSV.val.carModelList[cSV.val.carBrandSelectVal][cSV.val.carModelSelectVal];
+    const carBrand = mainStore.carBrandList[mainStore.carBrandSelectVal];
+    const carModel = mainStore.carModelList[mainStore.carBrandSelectVal][mainStore.carModelSelectVal];
 
     function updateCarCardHandler() {
-        updateCar(cSV.val.carBrandList,
-            cSV.val.carBrandSelectVal,
-            cSV.val.carModelList,
-            cSV.val.carModelSelectVal,
-            carImageInputVal,
-            Number(id),
-            cSV.val.carList,
-            cSV.func.setCarList,
-            setModalIsVisibleForDatabaseError);
+        mainStore.updateCarInCarList(carImageInputVal, Number(id), setModalIsVisibleForDatabaseError);
         setModalIsVisible(false)
     }
 
@@ -67,4 +59,4 @@ function UpdateCarCard() {
     );
 }
 
-export default UpdateCarCard;
+export default observer(UpdateCarCard);

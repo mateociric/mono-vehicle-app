@@ -14,23 +14,23 @@ class MainStore {
     constructor() {
         makeObservable(this, {
             carBrandList: observable,
-            addCarBrand: action,
-            deleteCarBrand: action,
+            addCarBrand: action.bound,
+            deleteCarBrand: action.bound,
             carBrandSelectVal: observable,
-            setCarBrandSelectVal: action,
+            setCarBrandSelectVal: action.bound,
             carModelList: observable,
-            addCarModel: action,
-            deleteCarModel: action,
+            addCarModel: action.bound,
+            deleteCarModel: action.bound,
             carModelSelectVal: observable,
-            setCarModelSelectVal: action,
+            setCarModelSelectVal: action.bound,
             carList: observable,
-            addCarToCarList: action,
-            deleteCarFromCarList: action,
-            updateCarInCarList: action,
+            addCarToCarList: action.bound,
+            deleteCarFromCarList: action.bound,
+            updateCarInCarList: action.bound,
             typeOfSort: observable,
-            setTypeOfSort: action,
+            setTypeOfSort: action.bound,
             searchCarInputVal: observable,
-            setSearchCarInputVal: action,
+            setSearchCarInputVal: action.bound,
         });
     }
     addCarBrand(inputValue: string) {
@@ -39,21 +39,21 @@ class MainStore {
         });
         if (!carBrandIsAlreadyExist) {
             this.carBrandList.push(inputValue);
-            //when the car brand list is updated, update the car model list for []
-            this.carModelList.push([]);
-            this.setCarBrandSelectVal(this.carBrandList.length);
+            //when the car brand list is updated, update the car model list also
+            this.carModelList.push([`${this.carBrandList[this.carBrandList.length - 1]} model`]);
+            this.setCarBrandSelectVal(this.carBrandList.length - 1);
         }
     }
     deleteCarBrand(inputValue: string) {
+        const indexOfDeletedCarBrandItem = this.carBrandList.map((el) => {
+            return el.toLowerCase();
+        }).indexOf(inputValue.toLowerCase());
         if (this.carBrandList.length > 1) {
-            this.carBrandList.filter((el) => {
+            this.carBrandList = this.carBrandList.filter((el) => {
                 return el.toLowerCase() !== inputValue.toLowerCase();
             });
             // when the car brand is deleted belonging model list also must be deleted
-            const indexOfDeletedCarBrandItem = this.carBrandList.map((el) => {
-                return el.toLowerCase();
-            }).indexOf(inputValue.toLowerCase());
-            this.carModelList.filter((el, index) => {
+            this.carModelList = this.carModelList.filter((el, index) => {
                 return index !== indexOfDeletedCarBrandItem
             });
             this.setCarBrandSelectVal(this.carBrandList.length - 1);
@@ -67,17 +67,18 @@ class MainStore {
             return el.toLowerCase() === inputValue.toLowerCase();
         });
         if (!carModelIsAlreadyExist) {
-            //!!!always to make a copy of an array, not reference (newCarModelLis = carModelList)
             this.carModelList[this.carBrandSelectVal].push(inputValue);
             this.setCarModelSelectVal(this.carModelList[this.carBrandSelectVal].length - 1);
         }
     }
     deleteCarModel(inputValue: string) {
-        //first update a single carModelList then assign carModel 2D ArrayList
-        this.carModelList[this.carBrandSelectVal] = this.carModelList[this.carBrandSelectVal].filter((el) => {
-            return el.toLowerCase() !== inputValue.toLowerCase();
-        });
-        this.setCarModelSelectVal(this.carModelList[this.carBrandSelectVal].length - 1);
+        if (this.carModelList[this.carBrandSelectVal].length > 1) {
+            //first update a single carModelList then assign carModel 2D ArrayList
+            this.carModelList[this.carBrandSelectVal] = this.carModelList[this.carBrandSelectVal].filter((el) => {
+                return el.toLowerCase() !== inputValue.toLowerCase();
+            });
+            this.setCarModelSelectVal(this.carModelList[this.carBrandSelectVal].length - 1);
+        }
     }
     setCarModelSelectVal(newValue: number) {
         this.carModelSelectVal = newValue;
@@ -95,7 +96,7 @@ class MainStore {
         }
     }
     deleteCarFromCarList(carInfoId: number) {
-        this.carList.filter((el: TCar) => {
+        this.carList = this.carList.filter((el: TCar) => {
             return el.id !== carInfoId;
         });
     }
@@ -106,13 +107,12 @@ class MainStore {
             carImage: carImageInputVal,
             id,
         }
-        this.carList.map((el) => {
+        this.carList = this.carList.map((el) => {
             if (el.id === id) {
                 el = updatedCar;
             }
             return el;
         });
-        //updateCarToDatabase(id, updatedCar, setModalIsVisibleForDatabaseError);
     }
     setTypeOfSort(newValue: 'id' | 'carBrand' | 'carModel') {
         this.typeOfSort = newValue;
@@ -128,5 +128,5 @@ class MainStore {
     }
 }
 
-const mainStore = MainStore
+const mainStore = new MainStore();
 export default mainStore

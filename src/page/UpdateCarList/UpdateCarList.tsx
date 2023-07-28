@@ -1,10 +1,11 @@
 import { useContext, useState } from 'react';
 import 'page/UpdateCarList/UpdateCarList.scss';
-import ctxStoreValues from 'store/store-context';
-import { checkInputValue, addCarBrand, deleteCarBrand, addCarModel, deleteCarModel } from 'utility/update-car-list-func';
+import { contextStore } from 'store/store-context';
+import { checkInputValue } from 'utility/update-car-list-func';
+import { observer } from 'mobx-react';
 
 function UpdateCarList() {
-    const cSV = useContext(ctxStoreValues);
+    const mainStore = useContext(contextStore);
     const [isCarBrandDisplyed, setIsCarBrandDisplyed] = useState<boolean>(true);
     const [inputValue, setInputValue] = useState<string>('');
 
@@ -17,37 +18,12 @@ function UpdateCarList() {
                 type="text"
                 placeholder={isCarBrandDisplyed ? 'eneter car brand name' : 'eneter car model name'}
             />
-            <button onClick={() => isCarBrandDisplyed ?
-                addCarBrand(
-                    inputValue,
-                    cSV.val.carBrandList,
-                    cSV.func.setCarBrandList,
-                    cSV.func.setCarModelList,
-                    cSV.func.setCarBrandSelectVal) :
-                addCarModel(
-                    inputValue,
-                    cSV.val.carModelList,
-                    cSV.val.carBrandSelectVal,
-                    cSV.func.setCarModelList,
-                    cSV.func.setCarModelSelectVal)
-            } disabled={!checkInputValue(inputValue)}
+            <button onClick={() => isCarBrandDisplyed ? mainStore.addCarBrand(inputValue) : mainStore.addCarModel(inputValue)}
+                disabled={!checkInputValue(inputValue)}
             >Add</button>
             <button onClick={() =>
-                isCarBrandDisplyed ?
-                    deleteCarBrand(
-                        inputValue,
-                        cSV.val.carBrandList,
-                        cSV.val.carModelList,
-                        cSV.func.setCarModelList,
-                        cSV.func.setCarBrandList,
-                        cSV.func.setCarBrandSelectVal) :
-                    deleteCarModel(
-                        inputValue,
-                        cSV.val.carModelList,
-                        cSV.val.carBrandSelectVal,
-                        cSV.func.setCarModelList,
-                        cSV.func.setCarModelSelectVal)
-            }>Delete</button>
+                isCarBrandDisplyed ? mainStore.deleteCarBrand(inputValue) : mainStore.deleteCarModel(inputValue)}
+            >Delete</button>
             <button
                 onClick={() => setIsCarBrandDisplyed(!isCarBrandDisplyed)}
                 className='reduce-font-size'
@@ -58,4 +34,4 @@ function UpdateCarList() {
     )
 }
 
-export default UpdateCarList;
+export default observer(UpdateCarList);
