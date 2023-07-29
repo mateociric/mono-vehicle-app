@@ -1,41 +1,35 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { useParams } from "react-router";
 import 'page/UpdateCarCard/UpdateCarCard.scss';
 import Modal from 'component/Modal/Modal';
-import { contextStore } from 'store/store-context';
+import { contextStore } from 'store/context-store';
+import { observer, useLocalObservable } from 'mobx-react';
+import localStore from 'store/localStore';
 import TCar from 'model/model-car';
-import { observer } from 'mobx-react';
 
 function UpdateCarCard() {
     const mainStore = useContext(contextStore);
-    const [carImageInputVal, setCarImageInputVal] = useState<string>('')
-    const [modalIsVisible, setModalIsVisible] = useState<boolean>(false);
-    const [modalIsVisibleForDatabaseError, setModalIsVisibleForDatabaseError] = useState<boolean>(false);
+    const lStore = useLocalObservable(() => localStore);
     const { id } = useParams();
+
+    const carBrand = mainStore.carBrandList[mainStore.carBrandSelectVal];
+    const carModel = mainStore.carModelList[mainStore.carBrandSelectVal][mainStore.carModelSelectVal];
     const carToBeUpadted = mainStore.carList.filter((el: TCar) => {
         return el.id === Number(id);
     });
-    const carBrand = mainStore.carBrandList[mainStore.carBrandSelectVal];
-    const carModel = mainStore.carModelList[mainStore.carBrandSelectVal][mainStore.carModelSelectVal];
-
-    function updateCarCardHandler() {
-        mainStore.updateCarInCarList(carImageInputVal, Number(id), setModalIsVisibleForDatabaseError);
-        setModalIsVisible(false)
-    }
-
-    function onCloseModalHandler() {
-        setModalIsVisibleForDatabaseError(false)
-    }
 
     return (
         <>
-            {modalIsVisible && <Modal
-                onClick={updateCarCardHandler}
+            {lStore.modal.isModalOpen && <Modal
+                onClick={() => {
+                    mainStore.updateCarInCarList(lStore.updateCarCardStore.carImageInputVal, Number(id), lStore.modal.toggleModalDataBaseError);
+                    lStore.modal.toggleModal();
+                }}
                 message={`Car card updated to ${carBrand} - ${carModel}`}
                 hasButtonNO={false}
             />}
-            {modalIsVisibleForDatabaseError && <Modal
-                onClick={onCloseModalHandler}
+            {lStore.modal.isModalOpenForDatabaseError && <Modal
+                onClick={lStore.modal.toggleModalDataBaseError}
                 message='Something went wrong. Car is not updated to database.'
                 hasButtonNO={false}
             />}
@@ -44,14 +38,14 @@ function UpdateCarCard() {
                     `${carToBeUpadted[0].carBrand} - ${carToBeUpadted[0].carModel}` :
                     'NO CAR CARD CREATED'}</label>
                 <input
-                    onChange={(event: any) => { setCarImageInputVal(event.target.value) }}
+                    onChange={(event: any) => { lStore.updateCarCardStore.setCarImageInputVal(event.target.value) }}
                     id='carImage'
                     type="text"
                     defaultValue={carToBeUpadted.length ? carToBeUpadted[0].carImage : ''}
                     placeholder='enter url of car image'
                 />
                 <button
-                    onClick={() => setModalIsVisible(true)}
+                    onClick={() => lStore.modal.toggleModal()}
                     className='reduce-font-size'
                 >Submit update</button>
             </div>

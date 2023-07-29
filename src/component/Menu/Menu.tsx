@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useLocation } from "react-router";
 import 'component/Menu/Menu.scss'
 import InputSearch from './InputSearch/InputSearch';
@@ -6,22 +6,19 @@ import SelectSort from './SelectSort/SelectSort';
 import SelectCarBrand from 'component/Menu/SelectCarBrand/SelectCarBrand';
 import SelectCarModel from 'component/Menu/SelectCarModel/SelectCarModel';
 import Modal from 'component/Modal/Modal';
-import { contextStore } from 'store/store-context';
-import { observer } from 'mobx-react';
+import { contextStore } from 'store/context-store';
+import { observer, useLocalObservable } from 'mobx-react';
+import localStore from 'store/localStore';
 
 function Menu() {
     const mainStore = useContext(contextStore);
-    const [modalIsVisibleForDatabaseError, setModalIsVisibleForDatabaseError] = useState<boolean>(false);
+    const lStore = useLocalObservable(() => localStore);
     const currLocation = useLocation();
-
-    function onCloseModalHandler() {
-        setModalIsVisibleForDatabaseError(false);
-    }
 
     return (
         <>
-            {modalIsVisibleForDatabaseError && <Modal
-                onClick={onCloseModalHandler}
+            {lStore.modal.isModalOpenForDatabaseError && <Modal
+                onClick={() => lStore.modal.toggleModalDataBaseError}
                 message='Something went wrong. The car is not saved to a database.'
                 hasButtonNO={false} />}
             <div className='menu flex-column'>
@@ -63,7 +60,7 @@ function Menu() {
                         currLocation={currLocation.pathname}
                     />
 
-                    <button onClick={() => mainStore.addCarToCarList(setModalIsVisibleForDatabaseError)}
+                    <button onClick={() => mainStore.addCarToCarList(lStore.modal.toggleModalDataBaseError)}
                         className={currLocation.pathname === '/' ? '' : 'buttonIsHidden'}
                     >Create car</button>
                 </section>

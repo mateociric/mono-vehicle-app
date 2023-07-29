@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import 'component/CarCard/CarCard.scss';
 import Modal from 'component/Modal/Modal';
-import { contextStore } from 'store/store-context';
-import { observer } from 'mobx-react';
+import { observer, useLocalObservable } from 'mobx-react';
+import { contextStore } from 'store/context-store';
+import localStore from 'store/localStore';
 import TCar from 'model/model-car';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -11,25 +12,15 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import defaultImage from 'image/default-image.jpg';
 
 function CarCard(props: { carInfo: TCar }) {
-    const [carImageIsVisible, setCarImageIsVisible] = useState<boolean>(true);
-    const [modalIsVisible, setModalIsVisible] = useState<boolean>(false);
     const mainStore = useContext(contextStore);
+    const lStore = useLocalObservable(() => localStore);
     const navigateToUpdateCarCard = useNavigate();
-
-    function deleteCarHandler(isYesClicked: boolean) {
-        if (isYesClicked) {
-            mainStore.deleteCarFromCarList(props.carInfo.id);
-            setModalIsVisible(false);
-        } else {
-            setModalIsVisible(false);
-        }
-    }
 
     return (
         <>
-            {modalIsVisible &&
+            {lStore.modal.isModalOpen &&
                 <Modal
-                    onClick={deleteCarHandler}
+                    onClick={lStore.carCardLoaclStore.deleteCarHandler(mainStore.deleteCarFromCarList, props.carInfo.id)}
                     message='Are you sure that you want delete this card?'
                     hasButtonNO={true}
                 />}
@@ -44,8 +35,8 @@ function CarCard(props: { carInfo: TCar }) {
 
                 <div className='car-card__image'>
                     <img
-                        onError={() => setCarImageIsVisible(false)}
-                        src={carImageIsVisible ? props.carInfo.carImage : defaultImage}
+                        onError={() => lStore.carCardLoaclStore.setUrlImageExists(false)}
+                        src={lStore.carCardLoaclStore.urlImageExists ? props.carInfo.carImage : defaultImage}
                         alt={`${props.carInfo.carBrand} - ${props.carInfo.carModel}`}
                     />
 
@@ -55,7 +46,7 @@ function CarCard(props: { carInfo: TCar }) {
                         <FontAwesomeIcon
                             onClick={(event: React.MouseEvent) => {
                                 event.stopPropagation();
-                                setModalIsVisible(true);
+                                lStore.modal.toggleModal();
                             }}
                             icon={faTrash}
                             size='3x'

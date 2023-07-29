@@ -1,34 +1,33 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import 'page/UpdateCarList/UpdateCarList.scss';
-import { contextStore } from 'store/store-context';
-import { checkInputValue } from 'utility/update-car-list-func';
-import { observer } from 'mobx-react';
+import { contextStore } from 'store/context-store';
+import localStore from 'store/localStore';
+import { observer, useLocalObservable } from 'mobx-react';
 
 function UpdateCarList() {
     const mainStore = useContext(contextStore);
-    const [isCarBrandDisplyed, setIsCarBrandDisplyed] = useState<boolean>(true);
-    const [inputValue, setInputValue] = useState<string>('');
+    const lStore = useLocalObservable(() => localStore);
 
     return (
         <div className='update-car-list flex-column'>
-            <label htmlFor='inputBrandModel'>{isCarBrandDisplyed ? 'Car brand' : 'Car model'}</label>
+            <label htmlFor='inputBrandModel'>{lStore.updateCarList.isCarBrandSwitched ? 'Car brand' : 'Car model'}</label>
             <input
-                onKeyUp={(event: React.KeyboardEvent) => setInputValue((event.target as HTMLInputElement).value)}
+                onKeyUp={(event: React.KeyboardEvent) => lStore.updateCarList.setInputValue((event.target as HTMLInputElement).value)}
                 id='inputBrandModel'
                 type="text"
-                placeholder={isCarBrandDisplyed ? 'eneter car brand name' : 'eneter car model name'}
+                placeholder={lStore.updateCarList.isCarBrandSwitched ? 'eneter car brand name' : 'eneter car model name'}
             />
-            <button onClick={() => isCarBrandDisplyed ? mainStore.addCarBrand(inputValue) : mainStore.addCarModel(inputValue)}
-                disabled={!checkInputValue(inputValue)}
+            <button onClick={() => lStore.updateCarList.isCarBrandSwitched ? mainStore.addCarBrand(lStore.updateCarList.inputValue) : mainStore.addCarModel(lStore.updateCarList.inputValue)}
+                disabled={!lStore.updateCarList.checkInputValue(lStore.updateCarList.inputValue)}
             >Add</button>
             <button onClick={() =>
-                isCarBrandDisplyed ? mainStore.deleteCarBrand(inputValue) : mainStore.deleteCarModel(inputValue)}
+                lStore.updateCarList.isCarBrandSwitched ? mainStore.deleteCarBrand(lStore.updateCarList.inputValue) : mainStore.deleteCarModel(lStore.updateCarList.inputValue)}
             >Delete</button>
             <button
-                onClick={() => setIsCarBrandDisplyed(!isCarBrandDisplyed)}
+                onClick={() => lStore.updateCarList.setIsCarBrandSwitched(!lStore.updateCarList.isCarBrandSwitched)}
                 className='reduce-font-size'
             >
-                Switch to {isCarBrandDisplyed ? 'model' : 'brand'}
+                Switch to {lStore.updateCarList.isCarBrandSwitched ? 'model' : 'brand'}
             </button>
         </div>
     )

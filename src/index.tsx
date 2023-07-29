@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.scss';
 import App from './App';
 //import { CtxStoreValuesProvider } from 'store/store-context';
-import ContextProvider from 'store/store-context';
+import ContextProvider from 'store/context-store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

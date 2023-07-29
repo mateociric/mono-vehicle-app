@@ -1,5 +1,5 @@
 import React from 'react';
-import mainStore from "./main-store";
+import mainStore from "store/main-store";
 
 export const contextStore = React.createContext(mainStore);
 

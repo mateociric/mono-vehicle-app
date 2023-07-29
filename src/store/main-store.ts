@@ -92,7 +92,6 @@ class MainStore {
                 id: !this.carList.length ? 1 : this.carList[this.carList.length - 1].id + 1,
             }
             this.carList.push(newCar);
-            //addCarToDatabase(newCar, setModalIsVisibleForDatabaseError);
         }
     }
     deleteCarFromCarList(carInfoId: number) {
