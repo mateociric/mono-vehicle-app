@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import 'page/UpdateCarList/UpdateCarList.scss';
+import { observer, useLocalObservable } from 'mobx-react';
 import { contextStore } from 'store/context-store';
 import localStore from 'store/localStore';
-import { observer, useLocalObservable } from 'mobx-react';
 
 function UpdateCarList() {
     const mainStore = useContext(contextStore);
@@ -17,11 +17,15 @@ function UpdateCarList() {
                 type="text"
                 placeholder={lStore.updateCarList.isCarBrandSwitched ? 'eneter car brand name' : 'eneter car model name'}
             />
-            <button onClick={() => lStore.updateCarList.isCarBrandSwitched ? mainStore.addCarBrand(lStore.updateCarList.inputValue) : mainStore.addCarModel(lStore.updateCarList.inputValue)}
+            <button onClick={() => lStore.updateCarList.isCarBrandSwitched ?
+                mainStore.addCarBrand(lStore.updateCarList.inputValue) :
+                mainStore.addCarModel(lStore.updateCarList.inputValue)}
                 disabled={!lStore.updateCarList.checkInputValue(lStore.updateCarList.inputValue)}
             >Add</button>
             <button onClick={() =>
-                lStore.updateCarList.isCarBrandSwitched ? mainStore.deleteCarBrand(lStore.updateCarList.inputValue) : mainStore.deleteCarModel(lStore.updateCarList.inputValue)}
+                lStore.updateCarList.isCarBrandSwitched ?
+                    mainStore.deleteCarBrand(lStore.updateCarList.inputValue) :
+                    mainStore.deleteCarModel(lStore.updateCarList.inputValue)}
             >Delete</button>
             <button
                 onClick={() => lStore.updateCarList.setIsCarBrandSwitched(!lStore.updateCarList.isCarBrandSwitched)}

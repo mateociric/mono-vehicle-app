@@ -1,6 +1,5 @@
 import 'component/Modal/Overlay.scss';
 
-
 function Overlay(props: { onClick: Function, message: string, hasButtonNO: boolean }) {
 
     return (

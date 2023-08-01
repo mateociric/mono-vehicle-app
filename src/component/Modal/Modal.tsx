@@ -3,6 +3,7 @@ import Backdrop from 'component/Modal/Backdrop';
 import Overlay from 'component/Modal/Overlay';
 
 function Modal(props: { onClick: Function, message: string, hasButtonNO: boolean }) {
+    
     return (
         <>
             {ReactDOM.createPortal(<Backdrop onClick={props.onClick} />, document.getElementById('backdrop-root') as HTMLElement)}

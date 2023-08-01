@@ -1,20 +1,16 @@
+import TLocalStore from "model/model-local-store";
 import TCar from "model/model-car";
 
-const localStore = {
-    carCardLoaclStore: {
+const localStore: TLocalStore = {
+    carCardStore: {
         urlImageExists: true,
         setUrlImageExists(newState: boolean) {
             this.urlImageExists = newState;
         },
-        deleteCarHandler(mainStoreDeleteCarFromCarList: Function, carInfoId: number) {
-            return (isYesClicked: boolean) => {
-                if (isYesClicked) {
-                    mainStoreDeleteCarFromCarList(carInfoId);
-                    localStore.modal.toggleModal();
-                } else {
-                    localStore.modal.toggleModal();
-                }
-            }
+    },
+    menuStore: {
+        searchCar(event: React.KeyboardEvent, setSearchCarInputVal: Function) {
+            setSearchCarInputVal((event.target as HTMLInputElement).value);
         }
     },
     homepageStore: {
@@ -64,12 +60,8 @@ const localStore = {
     },
     modal: {
         isModalOpen: false,
-        toggleModal() {
-            this.isModalOpen = !this.isModalOpen;
-        },
-        isModalOpenForDatabaseError: false,
-        toggleModalDataBaseError() {
-            this.isModalOpenForDatabaseError = !this.isModalOpenForDatabaseError;
+        setIsModalOpen(newState: boolean) {
+            this.isModalOpen = newState;
         },
     },
 }

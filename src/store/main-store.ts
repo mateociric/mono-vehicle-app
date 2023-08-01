@@ -10,7 +10,10 @@ class MainStore {
     typeOfSort: 'id' | 'carBrand' | 'carModel' = 'id';
     searchCarInputVal: string = '';
     appIsRunFirstTime: boolean = true;
-    isCarCardFailedToDeleteFromDatabase: boolean = false;
+    isDatabaseErrorGET: boolean = false;
+    isDatabaseErrorPOST: boolean = false;
+    isDatabaseErrorPUT: boolean = false;
+    isDatabaseErrorDELETE: boolean = false;
     constructor() {
         makeObservable(this, {
             carBrandList: observable,
@@ -31,6 +34,15 @@ class MainStore {
             setTypeOfSort: action.bound,
             searchCarInputVal: observable,
             setSearchCarInputVal: action.bound,
+            isDatabaseErrorGET: observable,
+            setIsDatabaseErrorGET: action.bound,
+            isDatabaseErrorPOST: observable,
+            setIsDatabaseErrorPOST: action.bound,
+            isDatabaseErrorPUT: observable,
+            setIsDatabaseErrorPUT: action.bound,
+            isDatabaseErrorDELETE: observable,
+            setIsDatabaseErrorDELETE: action.bound,
+            setCarListFromDatabase: action.bound,
         });
     }
     addCarBrand(inputValue: string) {
@@ -83,7 +95,7 @@ class MainStore {
     setCarModelSelectVal(newValue: number) {
         this.carModelSelectVal = newValue;
     }
-    addCarToCarList(setModalIsVisibleForDatabaseError: Function) {
+    addCarToCarList() {
         if (this.carModelList[this.carBrandSelectVal].length) {
             const newCar: TCar = {
                 carBrand: this.carBrandList[this.carBrandSelectVal],
@@ -99,7 +111,7 @@ class MainStore {
             return el.id !== carInfoId;
         });
     }
-    updateCarInCarList(carImageInputVal: string, id: number, setModalIsVisibleForDatabaseError: Function) {
+    updateCarInCarList(carImageInputVal: string, id: number) {
         const updatedCar: TCar = {
             carBrand: this.carBrandList[this.carBrandSelectVal],
             carModel: this.carModelList[this.carBrandSelectVal][this.carModelSelectVal],
@@ -122,8 +134,20 @@ class MainStore {
     setAppIsRunFirstTime(newValue: boolean) {
         this.appIsRunFirstTime = newValue;
     }
-    setIsCarCardFailedToDeleteFromDatabase(newValue: boolean) {
-        this.isCarCardFailedToDeleteFromDatabase = newValue;
+    setIsDatabaseErrorGET(newState: boolean) {
+        this.isDatabaseErrorGET = newState;
+    }
+    setIsDatabaseErrorPOST(newState: boolean) {
+        this.isDatabaseErrorPOST = newState;
+    }
+    setIsDatabaseErrorPUT(newState: boolean) {
+        this.isDatabaseErrorPUT = newState;
+    }
+    setIsDatabaseErrorDELETE(newState: boolean) {
+        this.isDatabaseErrorDELETE = newState;
+    }
+    setCarListFromDatabase(newState: TCar[]) {
+        this.carList = newState;
     }
 }
 

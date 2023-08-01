@@ -6,14 +6,13 @@ import UpdateCarList from 'page/UpdateCarList/UpdateCarList';
 import Help from 'page/Help/Help';
 import UpdateCarCard from 'page/UpdateCarCard/UpdateCarCard';
 import Menu from 'component/Menu/Menu';
-import { href } from 'utility/app-prop-href';
 
 function App() {
 
   return (
     <div className='container'>
       <header className="header">
-        <Navbar href={href}></Navbar>
+        <Navbar />
       </header>
 
       <main className='main'>
